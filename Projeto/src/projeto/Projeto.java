@@ -15,6 +15,12 @@ public class Projeto {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
+        // testing matrix
+        Matriz matriz = new Matriz();
+        matriz.generateBombs();
+        matriz.generateMatrix();
+        
     }
     
 }

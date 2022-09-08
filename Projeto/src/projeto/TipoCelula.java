@@ -10,9 +10,7 @@ package projeto;
  */
 public interface TipoCelula {
     
-    public String getTipo(); 
     public void mostrarImagem();
-    public void botaoDireito();
     public void botaoEsquerdo();
     
 }

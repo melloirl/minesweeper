@@ -8,24 +8,26 @@ package projeto;
  *
  * @author Wallace
  */
-public class Bomba extends Celula implements TipoCelula {
-
-    public Bomba(int posX, int posY){
-        super(posX, posY);
-    }
+public class Numero extends Celula implements TipoCelula {
+    int algarismo;
     
+    public Numero(int posX, int posY, int algarismo){
+        super(posX, posY);
+        this.algarismo = algarismo;
+    }
+
     @Override
     public String getTipo(){
-        return "Bomba";
+        return "Numero" + String.valueOf(algarismo);
     }
     
     @Override
     public void mostrarImagem(){
-        // todo -> mostra a imagem de bomba na célula
+        // todo -> mostra a imagem de numero na célula com um switch para diferentes algarismos
     }
     
     @Override
     public void botaoEsquerdo(){
         mostrarImagem();
-    } 
+    }
 }

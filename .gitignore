@@ -24,3 +24,5 @@ hs_err_pid*
 /src/nbproject/private/
 /Projeto/nbproject/private/
 /Projeto/build/
+/src/dist/
+/src/build/

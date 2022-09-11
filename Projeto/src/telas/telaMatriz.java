@@ -25,19 +25,13 @@ public class telaMatriz extends javax.swing.JFrame {
         String tipo = cell.getTipo();
         
         if (evt.getButton() == 1){
-            switch (tipo) {
-                case "Bomba" -> botao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/bomb.png")));
-                case "Numero0" -> botao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/0.png")));
-                case "Numero1" -> botao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/1.png")));
-                case "Numero2" -> botao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/2.png")));
-                case "Numero3" -> botao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/3.png")));
-                case "Numero4" -> botao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/4.png")));
-                case "Numero5" -> botao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/5.png")));
-                case "Numero6" -> botao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/6.png")));
-                case "Numero7" -> botao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/7.png")));
-                case "Numero8" -> botao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/8.png")));
-                default -> {
-                }
+            if (tipo.equals("Bomba")){
+                Bomba bomba = (Bomba) cell;
+                botao.setIcon(bomba.mostrarImagem());
+            }
+            else{
+                Numero numero = (Numero) cell;
+                botao.setIcon(numero.mostrarImagem());
             }
             botao.setEnabled(false);
         }

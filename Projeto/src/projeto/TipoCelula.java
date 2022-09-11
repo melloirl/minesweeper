@@ -3,14 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
 package projeto;
+import javax.swing.ImageIcon;
 
 /**
  *
  * @author Wallace
  */
 public interface TipoCelula {
-    
-    public void mostrarImagem();
-    public void botaoEsquerdo();
-    
+    public ImageIcon mostrarImagem();
 }

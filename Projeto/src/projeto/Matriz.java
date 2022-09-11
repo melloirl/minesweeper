@@ -12,14 +12,23 @@ import java.util.Collections;
  */
 public class Matriz {
     
-    Celula[][] celulas = new Celula[20][20];
+    Celula[][] celulas = new Celula[5][5];
     ArrayList<Boolean> bombSelector = new ArrayList<>();
     // 40% de bombas
-    int bombs = ((20*20) * 4)/10;
+    int bombs = ((5*5) * 4)/10;
+    
+    public Celula[][] getCelulas(){
+        return this.celulas;
+    }
+    
+    public Matriz(){
+        this.generateBombs();
+        this.generateMatrix();
+    }
     
     public void generateBombs(){
-        for(int i=0; i<20; i++){
-            for(int j=0; j<20; j++){
+        for(int i=0; i<5; i++){
+            for(int j=0; j<5; j++){
                 bombSelector.add(false);
             }
         }
@@ -32,36 +41,39 @@ public class Matriz {
     }
     
     public void generateMatrix(){
-        for(int k=0; k<400; k++){
-            int i = k/20;
-            int j = k % 20;
+        for(int k=0; k<25; k++){
+            int i = k/5;
+            int j = k % 5;
             celulas[i][j] = new Numero(i, j, 0);
             
             if ( bombSelector.get(k) ){
                 celulas[i][j] = new Bomba(i, j); 
+                
+                // comment out
                 System.out.println(i + "    " + j);
             }
         }
         
-        for(int i=0; i<20; i++){
-            for(int j=0; j<20; j++){
+        for(int i=0; i<5; i++){
+            for(int j=0; j<5; j++){
                 if( ! celulas[i][j].getTipo().equals("Bomba") ){
                     int proximity = 0;
                     
                     if (i>0 &&         celulas[i-1][j].getTipo().equals("Bomba") ) proximity += 1;
                     if (i>0 && j>0  && celulas[i-1][j-1].getTipo().equals("Bomba") ) proximity += 1;
-                    if (i>0 && j<19 && celulas[i-1][j+1].getTipo().equals("Bomba") ) proximity += 1;
+                    if (i>0 && j<4 && celulas[i-1][j+1].getTipo().equals("Bomba") ) proximity += 1;
                     
-                    if (i<19 &&         celulas[i+1][j].getTipo().equals("Bomba") ) proximity += 1;
-                    if (i<19 && j>0  && celulas[i+1][j-1].getTipo().equals("Bomba") ) proximity += 1;
-                    if (i<19 && j<19 && celulas[i+1][j+1].getTipo().equals("Bomba") ) proximity += 1;
+                    if (i<4 &&         celulas[i+1][j].getTipo().equals("Bomba") ) proximity += 1;
+                    if (i<4 && j>0  && celulas[i+1][j-1].getTipo().equals("Bomba") ) proximity += 1;
+                    if (i<4 && j<4 && celulas[i+1][j+1].getTipo().equals("Bomba") ) proximity += 1;
                     
                     if (j>0  && celulas[i][j-1].getTipo().equals("Bomba") ) proximity += 1;
-                    if (j<19 && celulas[i][j+1].getTipo().equals("Bomba") ) proximity += 1;
+                    if (j<4 && celulas[i][j+1].getTipo().equals("Bomba") ) proximity += 1;
                     
                     celulas[i][j] = new Numero(i, j, proximity);
                 }
                 
+                // comment out
                 System.out.println(i + "   " + j + "   " + celulas[i][j].getTipo());
             }
         }

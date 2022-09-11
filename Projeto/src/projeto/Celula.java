@@ -19,6 +19,14 @@ public abstract class Celula {
     
     public abstract String getTipo(); 
     
+    public boolean getBandeira(){
+        return this.bandeira;
+    }
+    
+    public void invertBandeira(){
+        this.bandeira = !this.bandeira;
+    }
+    
     public int getPosX(){
         return this.posX;
     }

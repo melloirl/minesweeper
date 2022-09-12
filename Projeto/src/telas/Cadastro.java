@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package telas;
-import java.util.Arrays;
 import projeto.*;
 
 /**
@@ -141,7 +140,7 @@ public class Cadastro extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String nomeExtraido = inputNome.getText();
         String usuarioExtraido = inputUsuario.getText();
-        String senhaExtraida = Arrays.toString(inputSenha.getPassword());
+        String senhaExtraida = new String(inputSenha.getPassword());
         
         Usuario novo = new Usuario(nomeExtraido,usuarioExtraido,senhaExtraida);
         inputNome.setText("");

@@ -13,6 +13,10 @@ import java.util.ArrayList;
 public class TelaPrincipal {
     
     private final HashMap<String,Usuario> usuarios = new HashMap<>();
+
+    public HashMap<String, Usuario> getUsuarios() {
+        return usuarios;
+    }
     
     public String cadastraUsuario(Usuario cadastrado){
         if(cadastrado.getNome().length() == 0){
@@ -73,13 +77,6 @@ public class TelaPrincipal {
         return encontrados;
     }
     
-    public ArrayList<Usuario> getUsuarios() {
-        ArrayList<Usuario> todos = new ArrayList<>();
-        
-        for(Usuario usuario : usuarios.values()){
-            todos.add(usuario);
-        }
-        return todos;
-    }
+
     
 }

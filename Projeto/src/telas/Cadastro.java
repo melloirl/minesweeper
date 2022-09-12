@@ -3,8 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package telas;
-
-import java.util.HashSet;
+import java.util.Arrays;
 import projeto.*;
 
 /**
@@ -12,12 +11,11 @@ import projeto.*;
  * @author Pedro
  */
 public class Cadastro extends javax.swing.JFrame {
-    TelaPrincipal tela = new TelaPrincipal();
-    /**
-     * Creates new form Cadastro
-     */
-    public Cadastro() {
+    private final Principal mae;
+    
+    public Cadastro(Principal telaprincipal) {
         initComponents();
+        this.mae = telaprincipal;
         
     }
 
@@ -103,9 +101,8 @@ public class Cadastro extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(labelUsuario)
                             .addComponent(inputUsuario)
-                            .addGroup(javax.swing.GroupLayout.Alignment.CENTER, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                                .addComponent(inputSenha)
-                                .addComponent(jButton1))
+                            .addComponent(inputSenha, javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.CENTER)
                             .addComponent(inputNome))
                         .addGap(104, 104, 104))))
         );
@@ -130,6 +127,7 @@ public class Cadastro extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void inputSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputSenhaActionPerformed
@@ -143,16 +141,17 @@ public class Cadastro extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String nomeExtraido = inputNome.getText();
         String usuarioExtraido = inputUsuario.getText();
-        String senhaExtraida = inputSenha.getPassword().toString();
+        String senhaExtraida = Arrays.toString(inputSenha.getPassword());
         
         Usuario novo = new Usuario(nomeExtraido,usuarioExtraido,senhaExtraida);
         inputNome.setText("");
         inputUsuario.setText("");
         inputSenha.setText("");
-        String resultado = tela.cadastraUsuario(novo);
+        String resultado = mae.tela.cadastraUsuario(novo);
         javax.swing.JOptionPane.showMessageDialog(rootPane, resultado, "Cadastro", javax.swing.JOptionPane.INFORMATION_MESSAGE);
         if(resultado.equals("Usuario cadastrado com sucesso.")){
-            System.exit(0);
+            mae.saveData(nomeExtraido+" "+usuarioExtraido+" "+senhaExtraida);
+            this.setVisible(false);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -160,40 +159,6 @@ public class Cadastro extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_inputUsuarioActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Cadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Cadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Cadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Cadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Cadastro().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField inputNome;

@@ -149,6 +149,8 @@ public class Cadastro extends javax.swing.JFrame {
         String resultado = mae.tela.cadastraUsuario(novo);
         javax.swing.JOptionPane.showMessageDialog(rootPane, resultado, "Cadastro", javax.swing.JOptionPane.INFORMATION_MESSAGE);
         if(resultado.equals("Usuario cadastrado com sucesso.")){
+            mae.setUsuariologado(mae.tela.getUsuarios().get(usuarioExtraido));
+            mae.atualizaLogado(usuarioExtraido);
             mae.saveData(nomeExtraido+" "+usuarioExtraido+" "+senhaExtraida);
             this.setVisible(false);
         }

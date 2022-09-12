@@ -3,7 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package projeto;
-
+import javax.swing.ImageIcon;
+        
 /**
  *
  * @author Wallace
@@ -20,12 +21,7 @@ public class Bomba extends Celula implements TipoCelula {
     }
     
     @Override
-    public void mostrarImagem(){
-        // todo -> mostra a imagem de bomba na célula
+    public ImageIcon mostrarImagem(){
+        return new ImageIcon(getClass().getResource("/Images/bomb.png"));
     }
-    
-    @Override
-    public void botaoEsquerdo(){
-        mostrarImagem();
-    } 
 }

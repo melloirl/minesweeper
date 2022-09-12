@@ -9,12 +9,12 @@ package projeto;
  * @author Wallace
  */
 public abstract class Celula {
-    int posX, posY;
+    int posI, posJ;
     boolean bandeira = false;
     
-    public Celula(int posX, int posY){
-        this.posX = posX;
-        this.posY = posY;
+    public Celula(int posI, int posJ){
+        this.posI = posI;
+        this.posJ = posJ;
     }
     
     public abstract String getTipo(); 
@@ -27,30 +27,11 @@ public abstract class Celula {
         this.bandeira = !this.bandeira;
     }
     
-    public int getPosX(){
-        return this.posX;
+    public int getPosI(){
+        return this.posI;
     }
     
-    public int getPosY(){
-        return this.posY;
-    }
-    
-    public void mostrarNaoJogado(){
-        // todo -> mostrar imagem de um quadrado a ser selecionado
-    };
-    
-    public void mostrarBandeira(){
-        // todo -> mostrar imagem de uma bandeira
-    }
-    
-    public void botaoDireito(){
-        if (bandeira){
-            mostrarNaoJogado();
-            bandeira = false;
-        }
-        else{
-            mostrarBandeira();
-            bandeira = true;
-        }
+    public int getPosJ(){
+        return this.posJ;
     }
 }

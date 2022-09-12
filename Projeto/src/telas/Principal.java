@@ -181,14 +181,14 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1MousePressed
 
     private void jButton2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MousePressed
-         this.jButton1.setEnabled(false);
-        this.jLabel1.setEnabled(false);
-        this.jButton1.setVisible(false);
-        this.jLabel1.setVisible(false);
-        this.jButton2.setEnabled(false);
-        this.jButton2.setVisible(false);
-        this.jButton3.setEnabled(false);
-        this.jButton3.setVisible(false);
+//        this.jButton1.setEnabled(false);
+//        this.jLabel1.setEnabled(false);
+//        this.jButton1.setVisible(false);
+//        this.jLabel1.setVisible(false);
+//        this.jButton2.setEnabled(false);
+//        this.jButton2.setVisible(false);
+//        this.jButton3.setEnabled(false);
+//        this.jButton3.setVisible(false);
         new Login(this).setVisible(true);
     }//GEN-LAST:event_jButton2MousePressed
 
@@ -201,14 +201,14 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MousePressed
-        this.jButton1.setEnabled(false);
-        this.jLabel1.setEnabled(false);
-        this.jButton1.setVisible(false);
-        this.jLabel1.setVisible(false);
-        this.jButton2.setEnabled(false);
-        this.jButton2.setVisible(false);
-        this.jButton3.setEnabled(false);
-        this.jButton3.setVisible(false);
+//        this.jButton1.setEnabled(false);
+//        this.jLabel1.setEnabled(false);
+//        this.jButton1.setVisible(false);
+//        this.jLabel1.setVisible(false);
+//        this.jButton2.setEnabled(false);
+//        this.jButton2.setVisible(false);
+//        this.jButton3.setEnabled(false);
+//        this.jButton3.setVisible(false);
         new Cadastro(this).setVisible(true);
     }//GEN-LAST:event_jButton3MousePressed
     public void saveData(String user){

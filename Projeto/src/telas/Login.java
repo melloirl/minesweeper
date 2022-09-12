@@ -35,8 +35,6 @@ public class Login extends javax.swing.JFrame {
         labelSenha = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         inputUsuario.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         inputUsuario.setToolTipText("");
         inputUsuario.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));

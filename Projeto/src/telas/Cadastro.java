@@ -35,8 +35,6 @@ public class Cadastro extends javax.swing.JFrame {
         labelSenha = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         inputNome.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         inputNome.setToolTipText("");
         inputNome.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));

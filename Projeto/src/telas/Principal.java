@@ -223,7 +223,7 @@ public class Principal extends javax.swing.JFrame {
     }
     
     public void atualizaLogado(String nome){
-       displayUsuario.setText("<html><FONT COLOR=GREEN>"+nome+"</FONT><html>");
+       displayUsuario.setText("<html><FONT COLOR=GREEN>Logado como "+nome+".</FONT><html>");
     }
     
     /**

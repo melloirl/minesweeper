@@ -130,7 +130,7 @@ public class Login extends javax.swing.JFrame {
             System.out.println(mae.tela.getUsuarios().get(usuarioExtraido).getSenha());
             if(mae.tela.getUsuarios().get(usuarioExtraido).getSenha().equals(senhaExtraida)){
                 mae.setUsuariologado(mae.tela.getUsuarios().get(usuarioExtraido));
-                mae.atualizaLogado(usuarioExtraido);
+                mae.atualizaLogado(mae.tela.getUsuarios().get(usuarioExtraido).getNome());
                 this.setVisible(false);
             }
             else{

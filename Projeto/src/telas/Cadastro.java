@@ -150,7 +150,7 @@ public class Cadastro extends javax.swing.JFrame {
         javax.swing.JOptionPane.showMessageDialog(rootPane, resultado, "Cadastro", javax.swing.JOptionPane.INFORMATION_MESSAGE);
         if(resultado.equals("Usuario cadastrado com sucesso.")){
             mae.setUsuariologado(mae.tela.getUsuarios().get(usuarioExtraido));
-            mae.atualizaLogado(usuarioExtraido);
+            mae.atualizaLogado(mae.tela.getUsuarios().get(usuarioExtraido).getNome());
             mae.saveData(nomeExtraido+" "+usuarioExtraido+" "+senhaExtraida);
             this.setVisible(false);
         }

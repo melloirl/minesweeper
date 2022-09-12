@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package telas;
+import java.awt.Component;
 import projeto.*;
 import java.io.File;
 import java.io.IOException;
@@ -145,7 +146,7 @@ public class Principal extends javax.swing.JFrame {
                             .addComponent(jButton1)
                             .addComponent(jButton2)
                             .addComponent(jButton3))
-                        .addGap(111, 111, 111))
+                        .addContainerGap(111, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(displayUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(17, 17, 17))))
@@ -153,11 +154,11 @@ public class Principal extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(150, 150, 150)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(18, 18, 18)
                 .addComponent(jButton2)
@@ -173,7 +174,16 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        new telaMatriz().setVisible(true);
+        this.jButton1.setEnabled(false);
+        this.jLabel1.setEnabled(false);
+        this.jButton1.setVisible(false);
+        this.jLabel1.setVisible(false);
+        this.jButton2.setEnabled(false);
+        this.jButton2.setVisible(false);
+        this.jButton3.setEnabled(false);
+        this.jButton3.setVisible(false);
+        new telaMatriz(this).setVisible(true);
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MousePressed
@@ -224,6 +234,17 @@ public class Principal extends javax.swing.JFrame {
     
     public void atualizaLogado(String nome){
        displayUsuario.setText("<html><FONT COLOR=GREEN>Logado como "+nome+".</FONT><html>");
+    }
+    
+    public void regeneraTela(){
+         this.jButton1.setEnabled(true);
+         this.jLabel1.setEnabled(true);
+         this.jButton1.setVisible(true);
+         this.jLabel1.setVisible(true);
+         this.jButton2.setEnabled(true);
+         this.jButton2.setVisible(true);
+         this.jButton3.setEnabled(true);
+         this.jButton3.setVisible(true);
     }
     
     /**

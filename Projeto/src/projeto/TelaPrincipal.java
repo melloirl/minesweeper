@@ -14,22 +14,22 @@ public class TelaPrincipal {
     
     private final HashMap<String,Usuario> usuarios = new HashMap<>();
     
-    public void cadastraUsuario(Usuario cadastrado){
+    public String cadastraUsuario(Usuario cadastrado){
         if(cadastrado.getNome().length() == 0){
-            System.out.println("Nao foi possível realizar o cadastro. O campo nome nao pode ser nulo.");
+            return "Nao foi possivel realizar o cadastro. O campo nome nao pode ser nulo.";
         }
         else if(cadastrado.getLogin().length() == 0){
-            System.out.println("Nao foi possível realizar o cadastro. O campo login nao pode ser nulo.");
+            return "Nao foi possivel realizar o cadastro. O campo login nao pode ser nulo.";
         }
         else if(cadastrado.getSenha().length() == 0){
-            System.out.println("Nao foi possível realizar o cadastro. O campo senha nao pode ser nulo.");
+            return "Nao foi possível realizar o cadastro. O campo senha nao pode ser nulo.";
         }
         else if(usuarios.containsKey(cadastrado.getLogin())){
-            System.out.println("Nao foi possível realizar o cadastro. Este login ja  esta sendo utilizado.");
+            return "Nao foi possível realizar o cadastro. Este login ja  esta sendo utilizado.";
         }
         else{
             usuarios.put(cadastrado.getLogin(), cadastrado);
-            System.out.println("Usuario cadastrado com sucesso.");
+            return "Usuario cadastrado com sucesso.";
         }
     }
     

@@ -62,7 +62,7 @@ public class Projeto {
             
             deletar = ls.nextLine();
             
-            tela1.deletaUsuario(deletar);
+            tela1.deletaUsuario(deletar); 
             
             System.out.println(tela1.getUsuarios());
         }

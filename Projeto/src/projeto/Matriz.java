@@ -11,13 +11,13 @@ import java.util.Collections;
  * @author Wallace
  */
 public class Matriz {
-    static final int SIZE = 8;
+    private final int SIZE = 8;
     // 18.7SIZE% de 64 = 12 bombs
     int bombs = ((SIZE*SIZE) * 19)/100;
     Celula[][] celulas = new Celula[SIZE][SIZE];
     ArrayList<Boolean> bombSelector = new ArrayList<>();
     
-    public static int getSIZE() {
+    public int getSIZE() {
         return SIZE;
     }
 

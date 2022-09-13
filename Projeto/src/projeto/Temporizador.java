@@ -9,7 +9,7 @@ package projeto;
  * @author lucas
  */
 public class Temporizador {
-    private int contador;
+    private int contador = 300;
     
     public int getContador() {
         return contador;

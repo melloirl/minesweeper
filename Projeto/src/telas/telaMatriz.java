@@ -3,6 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package telas;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import projeto.*;
 
 /**
@@ -12,6 +15,7 @@ import projeto.*;
 public class telaMatriz extends javax.swing.JFrame {
     private final Principal mae;
     private int contador =0;
+    private Temporizador cronometro;
     /**
      * Creates new form telaMatriz
      */
@@ -19,8 +23,20 @@ public class telaMatriz extends javax.swing.JFrame {
         initComponents();
         this.mae = telaprincipal;
     }
-    
+   
     Matriz matriz = new Matriz();
+    
+    private void ganhou(String user){
+        try{
+            try (FileWriter writer = new FileWriter("ranking.txt",true); BufferedWriter buffwriter = new BufferedWriter(writer)) {
+                buffwriter.write(user);
+                buffwriter.newLine();
+            }
+        } catch (IOException e){
+            System.out.println("Ocorreu um erro.");
+        }
+    
+    }
     
     public void clicks(javax.swing.JToggleButton botao, java.awt.event.MouseEvent evt, int i, int j){
         Celula cell = matriz.getCelulas()[i][j];
@@ -37,6 +53,13 @@ public class telaMatriz extends javax.swing.JFrame {
             else{
                 Numero numero = (Numero) cell;
                 botao.setIcon(numero.mostrarImagem());
+                contador++;
+                if(contador == (matriz.getSIZE()*matriz.getSIZE()) - matriz.getBombs()+1){
+                    javax.swing.JOptionPane.showMessageDialog(rootPane, "Você ganhou :)", "Vitoria", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                    this.setVisible(false);
+                    mae.regeneraTela();
+                    this.ganhou(mae.getUsuariologado().getLogin()+" "+cronometro.getContador());
+                }
             }
             botao.setEnabled(false);
         }
@@ -48,10 +71,7 @@ public class telaMatriz extends javax.swing.JFrame {
                 botao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/flag.png")));
             }
             cell.invertBandeira();
-            contador++;
-            if(contador == matriz.getSIZE()*matriz.getSIZE() - matriz.getBombs()){
-                javax.swing.JOptionPane.showMessageDialog(rootPane, "Você ganhou :(", "Vitoria", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-            }
+
         };
     }
     /**

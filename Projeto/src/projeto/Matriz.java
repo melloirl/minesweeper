@@ -13,7 +13,7 @@ import java.util.Collections;
 public class Matriz {
     static final int SIZE = 8;
     // 18.7SIZE% de 64 = 12 bombs
-    int bombs = ((SIZE*SIZE) * 4)/10;
+    int bombs = ((SIZE*SIZE) * 19)/100;
     Celula[][] celulas = new Celula[SIZE][SIZE];
     ArrayList<Boolean> bombSelector = new ArrayList<>();
     

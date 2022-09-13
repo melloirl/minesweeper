@@ -58,6 +58,7 @@ public class telaMatriz extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jToggleButton1 = new javax.swing.JToggleButton();
         jToggleButton2 = new javax.swing.JToggleButton();
         jToggleButton3 = new javax.swing.JToggleButton();
@@ -83,12 +84,58 @@ public class telaMatriz extends javax.swing.JFrame {
         jToggleButton23 = new javax.swing.JToggleButton();
         jToggleButton24 = new javax.swing.JToggleButton();
         jToggleButton25 = new javax.swing.JToggleButton();
+        jToggleButton26 = new javax.swing.JToggleButton();
+        jToggleButton27 = new javax.swing.JToggleButton();
+        jToggleButton28 = new javax.swing.JToggleButton();
+        jToggleButton29 = new javax.swing.JToggleButton();
+        jToggleButton30 = new javax.swing.JToggleButton();
+        jToggleButton31 = new javax.swing.JToggleButton();
+        jToggleButton32 = new javax.swing.JToggleButton();
+        jToggleButton33 = new javax.swing.JToggleButton();
+        jToggleButton34 = new javax.swing.JToggleButton();
+        jToggleButton35 = new javax.swing.JToggleButton();
+        jToggleButton36 = new javax.swing.JToggleButton();
+        jToggleButton37 = new javax.swing.JToggleButton();
+        jToggleButton38 = new javax.swing.JToggleButton();
+        jToggleButton39 = new javax.swing.JToggleButton();
+        jToggleButton40 = new javax.swing.JToggleButton();
+        jToggleButton41 = new javax.swing.JToggleButton();
+        jToggleButton42 = new javax.swing.JToggleButton();
+        jToggleButton43 = new javax.swing.JToggleButton();
+        jToggleButton44 = new javax.swing.JToggleButton();
+        jToggleButton45 = new javax.swing.JToggleButton();
+        jToggleButton46 = new javax.swing.JToggleButton();
+        jToggleButton47 = new javax.swing.JToggleButton();
+        jToggleButton48 = new javax.swing.JToggleButton();
+        jToggleButton49 = new javax.swing.JToggleButton();
+        jToggleButton50 = new javax.swing.JToggleButton();
+        jToggleButton51 = new javax.swing.JToggleButton();
+        jToggleButton52 = new javax.swing.JToggleButton();
+        jToggleButton53 = new javax.swing.JToggleButton();
+        jToggleButton54 = new javax.swing.JToggleButton();
+        jToggleButton55 = new javax.swing.JToggleButton();
+        jToggleButton56 = new javax.swing.JToggleButton();
+        jToggleButton57 = new javax.swing.JToggleButton();
+        jToggleButton58 = new javax.swing.JToggleButton();
+        jToggleButton59 = new javax.swing.JToggleButton();
+        jToggleButton60 = new javax.swing.JToggleButton();
+        jToggleButton61 = new javax.swing.JToggleButton();
+        jToggleButton62 = new javax.swing.JToggleButton();
+        jToggleButton63 = new javax.swing.JToggleButton();
+        jToggleButton64 = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(600, 600));
-        getContentPane().setLayout(new java.awt.GridLayout(5, 5, 1, 1));
+        setResizable(false);
+        setSize(new java.awt.Dimension(620, 710));
+
+        jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel1.setMaximumSize(new java.awt.Dimension(640, 640));
+        jPanel1.setMinimumSize(new java.awt.Dimension(0, 0));
+        jPanel1.setPreferredSize(new java.awt.Dimension(560, 560));
+        jPanel1.setLayout(new java.awt.GridLayout(8, 8, 1, 1));
 
         jToggleButton1.setToolTipText(null);
         jToggleButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -96,7 +143,7 @@ public class telaMatriz extends javax.swing.JFrame {
                 jToggleButton1MousePressed(evt);
             }
         });
-        getContentPane().add(jToggleButton1);
+        jPanel1.add(jToggleButton1);
 
         jToggleButton2.setToolTipText(null);
         jToggleButton2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -104,7 +151,7 @@ public class telaMatriz extends javax.swing.JFrame {
                 jToggleButton2MousePressed(evt);
             }
         });
-        getContentPane().add(jToggleButton2);
+        jPanel1.add(jToggleButton2);
 
         jToggleButton3.setToolTipText(null);
         jToggleButton3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -112,7 +159,7 @@ public class telaMatriz extends javax.swing.JFrame {
                 jToggleButton3MousePressed(evt);
             }
         });
-        getContentPane().add(jToggleButton3);
+        jPanel1.add(jToggleButton3);
 
         jToggleButton4.setToolTipText(null);
         jToggleButton4.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -120,7 +167,7 @@ public class telaMatriz extends javax.swing.JFrame {
                 jToggleButton4MousePressed(evt);
             }
         });
-        getContentPane().add(jToggleButton4);
+        jPanel1.add(jToggleButton4);
 
         jToggleButton5.setToolTipText(null);
         jToggleButton5.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -128,7 +175,7 @@ public class telaMatriz extends javax.swing.JFrame {
                 jToggleButton5MousePressed(evt);
             }
         });
-        getContentPane().add(jToggleButton5);
+        jPanel1.add(jToggleButton5);
 
         jToggleButton6.setToolTipText(null);
         jToggleButton6.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -136,7 +183,7 @@ public class telaMatriz extends javax.swing.JFrame {
                 jToggleButton6MousePressed(evt);
             }
         });
-        getContentPane().add(jToggleButton6);
+        jPanel1.add(jToggleButton6);
 
         jToggleButton7.setToolTipText(null);
         jToggleButton7.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -144,7 +191,7 @@ public class telaMatriz extends javax.swing.JFrame {
                 jToggleButton7MousePressed(evt);
             }
         });
-        getContentPane().add(jToggleButton7);
+        jPanel1.add(jToggleButton7);
 
         jToggleButton8.setToolTipText(null);
         jToggleButton8.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -152,7 +199,7 @@ public class telaMatriz extends javax.swing.JFrame {
                 jToggleButton8MousePressed(evt);
             }
         });
-        getContentPane().add(jToggleButton8);
+        jPanel1.add(jToggleButton8);
 
         jToggleButton9.setToolTipText(null);
         jToggleButton9.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -160,7 +207,7 @@ public class telaMatriz extends javax.swing.JFrame {
                 jToggleButton9MousePressed(evt);
             }
         });
-        getContentPane().add(jToggleButton9);
+        jPanel1.add(jToggleButton9);
 
         jToggleButton10.setToolTipText(null);
         jToggleButton10.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -168,7 +215,7 @@ public class telaMatriz extends javax.swing.JFrame {
                 jToggleButton10MousePressed(evt);
             }
         });
-        getContentPane().add(jToggleButton10);
+        jPanel1.add(jToggleButton10);
 
         jToggleButton11.setToolTipText(null);
         jToggleButton11.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -176,7 +223,7 @@ public class telaMatriz extends javax.swing.JFrame {
                 jToggleButton11MousePressed(evt);
             }
         });
-        getContentPane().add(jToggleButton11);
+        jPanel1.add(jToggleButton11);
 
         jToggleButton12.setToolTipText(null);
         jToggleButton12.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -184,7 +231,7 @@ public class telaMatriz extends javax.swing.JFrame {
                 jToggleButton12MousePressed(evt);
             }
         });
-        getContentPane().add(jToggleButton12);
+        jPanel1.add(jToggleButton12);
 
         jToggleButton13.setToolTipText(null);
         jToggleButton13.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -192,7 +239,7 @@ public class telaMatriz extends javax.swing.JFrame {
                 jToggleButton13MousePressed(evt);
             }
         });
-        getContentPane().add(jToggleButton13);
+        jPanel1.add(jToggleButton13);
 
         jToggleButton14.setToolTipText(null);
         jToggleButton14.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -200,7 +247,7 @@ public class telaMatriz extends javax.swing.JFrame {
                 jToggleButton14MousePressed(evt);
             }
         });
-        getContentPane().add(jToggleButton14);
+        jPanel1.add(jToggleButton14);
 
         jToggleButton15.setToolTipText(null);
         jToggleButton15.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -208,15 +255,15 @@ public class telaMatriz extends javax.swing.JFrame {
                 jToggleButton15MousePressed(evt);
             }
         });
-        getContentPane().add(jToggleButton15);
+        jPanel1.add(jToggleButton15);
 
         jToggleButton16.setToolTipText(null);
-        jToggleButton16.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jToggleButton16MousePressed(evt);
+        jToggleButton16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton16ActionPerformed(evt);
             }
         });
-        getContentPane().add(jToggleButton16);
+        jPanel1.add(jToggleButton16);
 
         jToggleButton17.setToolTipText(null);
         jToggleButton17.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -224,7 +271,7 @@ public class telaMatriz extends javax.swing.JFrame {
                 jToggleButton17MousePressed(evt);
             }
         });
-        getContentPane().add(jToggleButton17);
+        jPanel1.add(jToggleButton17);
 
         jToggleButton18.setToolTipText(null);
         jToggleButton18.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -232,7 +279,7 @@ public class telaMatriz extends javax.swing.JFrame {
                 jToggleButton18MousePressed(evt);
             }
         });
-        getContentPane().add(jToggleButton18);
+        jPanel1.add(jToggleButton18);
 
         jToggleButton19.setToolTipText(null);
         jToggleButton19.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -240,7 +287,7 @@ public class telaMatriz extends javax.swing.JFrame {
                 jToggleButton19MousePressed(evt);
             }
         });
-        getContentPane().add(jToggleButton19);
+        jPanel1.add(jToggleButton19);
 
         jToggleButton20.setToolTipText(null);
         jToggleButton20.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -248,7 +295,7 @@ public class telaMatriz extends javax.swing.JFrame {
                 jToggleButton20MousePressed(evt);
             }
         });
-        getContentPane().add(jToggleButton20);
+        jPanel1.add(jToggleButton20);
 
         jToggleButton21.setToolTipText(null);
         jToggleButton21.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -256,7 +303,7 @@ public class telaMatriz extends javax.swing.JFrame {
                 jToggleButton21MousePressed(evt);
             }
         });
-        getContentPane().add(jToggleButton21);
+        jPanel1.add(jToggleButton21);
 
         jToggleButton22.setToolTipText(null);
         jToggleButton22.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -264,7 +311,7 @@ public class telaMatriz extends javax.swing.JFrame {
                 jToggleButton22MousePressed(evt);
             }
         });
-        getContentPane().add(jToggleButton22);
+        jPanel1.add(jToggleButton22);
 
         jToggleButton23.setToolTipText(null);
         jToggleButton23.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -272,7 +319,7 @@ public class telaMatriz extends javax.swing.JFrame {
                 jToggleButton23MousePressed(evt);
             }
         });
-        getContentPane().add(jToggleButton23);
+        jPanel1.add(jToggleButton23);
 
         jToggleButton24.setToolTipText(null);
         jToggleButton24.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -280,7 +327,7 @@ public class telaMatriz extends javax.swing.JFrame {
                 jToggleButton24MousePressed(evt);
             }
         });
-        getContentPane().add(jToggleButton24);
+        jPanel1.add(jToggleButton24);
 
         jToggleButton25.setToolTipText(null);
         jToggleButton25.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -288,7 +335,297 @@ public class telaMatriz extends javax.swing.JFrame {
                 jToggleButton25MousePressed(evt);
             }
         });
-        getContentPane().add(jToggleButton25);
+        jPanel1.add(jToggleButton25);
+
+        jToggleButton26.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jToggleButton26MousePressed(evt);
+            }
+        });
+        jPanel1.add(jToggleButton26);
+
+        jToggleButton27.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jToggleButton27MousePressed(evt);
+            }
+        });
+        jPanel1.add(jToggleButton27);
+
+        jToggleButton28.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jToggleButton28MousePressed(evt);
+            }
+        });
+        jPanel1.add(jToggleButton28);
+
+        jToggleButton29.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jToggleButton29MousePressed(evt);
+            }
+        });
+        jPanel1.add(jToggleButton29);
+
+        jToggleButton30.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jToggleButton30MousePressed(evt);
+            }
+        });
+        jPanel1.add(jToggleButton30);
+
+        jToggleButton31.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jToggleButton31MousePressed(evt);
+            }
+        });
+        jPanel1.add(jToggleButton31);
+
+        jToggleButton32.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jToggleButton32MousePressed(evt);
+            }
+        });
+        jPanel1.add(jToggleButton32);
+
+        jToggleButton33.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jToggleButton33MousePressed(evt);
+            }
+        });
+        jPanel1.add(jToggleButton33);
+
+        jToggleButton34.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jToggleButton34MousePressed(evt);
+            }
+        });
+        jPanel1.add(jToggleButton34);
+
+        jToggleButton35.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jToggleButton35MousePressed(evt);
+            }
+        });
+        jPanel1.add(jToggleButton35);
+
+        jToggleButton36.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jToggleButton36MousePressed(evt);
+            }
+        });
+        jPanel1.add(jToggleButton36);
+
+        jToggleButton37.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jToggleButton37MousePressed(evt);
+            }
+        });
+        jPanel1.add(jToggleButton37);
+
+        jToggleButton38.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jToggleButton38MousePressed(evt);
+            }
+        });
+        jPanel1.add(jToggleButton38);
+
+        jToggleButton39.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jToggleButton39MousePressed(evt);
+            }
+        });
+        jPanel1.add(jToggleButton39);
+
+        jToggleButton40.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jToggleButton40MousePressed(evt);
+            }
+        });
+        jPanel1.add(jToggleButton40);
+
+        jToggleButton41.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jToggleButton41MousePressed(evt);
+            }
+        });
+        jPanel1.add(jToggleButton41);
+
+        jToggleButton42.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jToggleButton42MousePressed(evt);
+            }
+        });
+        jPanel1.add(jToggleButton42);
+
+        jToggleButton43.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jToggleButton43MousePressed(evt);
+            }
+        });
+        jPanel1.add(jToggleButton43);
+
+        jToggleButton44.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jToggleButton44MousePressed(evt);
+            }
+        });
+        jPanel1.add(jToggleButton44);
+
+        jToggleButton45.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jToggleButton45MousePressed(evt);
+            }
+        });
+        jPanel1.add(jToggleButton45);
+
+        jToggleButton46.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jToggleButton46MousePressed(evt);
+            }
+        });
+        jPanel1.add(jToggleButton46);
+
+        jToggleButton47.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jToggleButton47MousePressed(evt);
+            }
+        });
+        jPanel1.add(jToggleButton47);
+
+        jToggleButton48.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jToggleButton48MousePressed(evt);
+            }
+        });
+        jPanel1.add(jToggleButton48);
+
+        jToggleButton49.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jToggleButton49MousePressed(evt);
+            }
+        });
+        jPanel1.add(jToggleButton49);
+
+        jToggleButton50.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jToggleButton50MousePressed(evt);
+            }
+        });
+        jPanel1.add(jToggleButton50);
+
+        jToggleButton51.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jToggleButton51MousePressed(evt);
+            }
+        });
+        jPanel1.add(jToggleButton51);
+
+        jToggleButton52.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jToggleButton52MousePressed(evt);
+            }
+        });
+        jPanel1.add(jToggleButton52);
+
+        jToggleButton53.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jToggleButton53MousePressed(evt);
+            }
+        });
+        jPanel1.add(jToggleButton53);
+
+        jToggleButton54.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jToggleButton54MousePressed(evt);
+            }
+        });
+        jPanel1.add(jToggleButton54);
+
+        jToggleButton55.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jToggleButton55MousePressed(evt);
+            }
+        });
+        jPanel1.add(jToggleButton55);
+
+        jToggleButton56.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jToggleButton56MousePressed(evt);
+            }
+        });
+        jPanel1.add(jToggleButton56);
+
+        jToggleButton57.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jToggleButton57MousePressed(evt);
+            }
+        });
+        jPanel1.add(jToggleButton57);
+
+        jToggleButton58.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jToggleButton58MousePressed(evt);
+            }
+        });
+        jPanel1.add(jToggleButton58);
+
+        jToggleButton59.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jToggleButton59MousePressed(evt);
+            }
+        });
+        jPanel1.add(jToggleButton59);
+
+        jToggleButton60.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jToggleButton60MousePressed(evt);
+            }
+        });
+        jPanel1.add(jToggleButton60);
+
+        jToggleButton61.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jToggleButton61MousePressed(evt);
+            }
+        });
+        jPanel1.add(jToggleButton61);
+
+        jToggleButton62.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jToggleButton62MousePressed(evt);
+            }
+        });
+        jPanel1.add(jToggleButton62);
+
+        jToggleButton63.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jToggleButton63MousePressed(evt);
+            }
+        });
+        jPanel1.add(jToggleButton63);
+
+        jToggleButton64.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jToggleButton64MousePressed(evt);
+            }
+        });
+        jPanel1.add(jToggleButton64);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(30, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(130, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
+        );
 
         pack();
         setLocationRelativeTo(null);
@@ -315,84 +652,240 @@ public class telaMatriz extends javax.swing.JFrame {
     }//GEN-LAST:event_jToggleButton5MousePressed
 
     private void jToggleButton6MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton6MousePressed
-        clicks(jToggleButton6, evt, 1, 0);
+        clicks(jToggleButton6, evt, 0, 5);
     }//GEN-LAST:event_jToggleButton6MousePressed
 
     private void jToggleButton7MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton7MousePressed
-        clicks(jToggleButton7, evt, 1, 1);
+        clicks(jToggleButton7, evt, 0, 6);
     }//GEN-LAST:event_jToggleButton7MousePressed
 
     private void jToggleButton8MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton8MousePressed
-        clicks(jToggleButton8, evt, 1, 2);
+        clicks(jToggleButton8, evt, 0, 7);
     }//GEN-LAST:event_jToggleButton8MousePressed
 
     private void jToggleButton9MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton9MousePressed
-        clicks(jToggleButton9, evt, 1, 3);
+        clicks(jToggleButton9, evt, 1, 0);
     }//GEN-LAST:event_jToggleButton9MousePressed
 
     private void jToggleButton10MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton10MousePressed
-        clicks(jToggleButton10, evt, 1, 4);
+        clicks(jToggleButton10, evt, 1, 1);
     }//GEN-LAST:event_jToggleButton10MousePressed
 
     private void jToggleButton11MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton11MousePressed
-        clicks(jToggleButton11, evt, 2, 0);
+        clicks(jToggleButton11, evt, 1, 2);
     }//GEN-LAST:event_jToggleButton11MousePressed
 
     private void jToggleButton12MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton12MousePressed
-        clicks(jToggleButton12, evt, 2, 1);
+        clicks(jToggleButton12, evt, 1, 3);
     }//GEN-LAST:event_jToggleButton12MousePressed
 
     private void jToggleButton13MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton13MousePressed
-        clicks(jToggleButton13, evt, 2, 2);
+        clicks(jToggleButton13, evt, 1, 4);
     }//GEN-LAST:event_jToggleButton13MousePressed
 
     private void jToggleButton14MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton14MousePressed
-        clicks(jToggleButton14, evt, 2, 3);
+        clicks(jToggleButton14, evt, 1, 5);
     }//GEN-LAST:event_jToggleButton14MousePressed
 
     private void jToggleButton15MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton15MousePressed
-        clicks(jToggleButton15, evt, 2, 4);
+        clicks(jToggleButton15, evt, 1, 6);
     }//GEN-LAST:event_jToggleButton15MousePressed
 
-    private void jToggleButton16MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton16MousePressed
-        clicks(jToggleButton16, evt, 3, 0);
-    }//GEN-LAST:event_jToggleButton16MousePressed
-
     private void jToggleButton17MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton17MousePressed
-        clicks(jToggleButton17, evt, 3, 1);
+        clicks(jToggleButton17, evt, 2, 0);
     }//GEN-LAST:event_jToggleButton17MousePressed
 
     private void jToggleButton18MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton18MousePressed
-        clicks(jToggleButton18, evt, 3, 2);
+        clicks(jToggleButton18, evt, 2, 1);
     }//GEN-LAST:event_jToggleButton18MousePressed
 
     private void jToggleButton19MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton19MousePressed
-        clicks(jToggleButton19, evt, 3, 3);
+        clicks(jToggleButton19, evt, 2, 2);
     }//GEN-LAST:event_jToggleButton19MousePressed
 
     private void jToggleButton20MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton20MousePressed
-        clicks(jToggleButton20, evt, 3, 4);
+        clicks(jToggleButton20, evt, 2, 3);
     }//GEN-LAST:event_jToggleButton20MousePressed
 
     private void jToggleButton21MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton21MousePressed
-        clicks(jToggleButton21, evt, 4, 0);
+        clicks(jToggleButton21, evt, 2, 4);
     }//GEN-LAST:event_jToggleButton21MousePressed
 
     private void jToggleButton22MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton22MousePressed
-        clicks(jToggleButton22, evt, 4, 1);
+        clicks(jToggleButton22, evt, 2, 5);
     }//GEN-LAST:event_jToggleButton22MousePressed
 
     private void jToggleButton23MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton23MousePressed
-        clicks(jToggleButton23, evt, 4, 2);
+        clicks(jToggleButton23, evt, 2, 6);
     }//GEN-LAST:event_jToggleButton23MousePressed
 
     private void jToggleButton24MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton24MousePressed
-        clicks(jToggleButton24, evt, 4, 3);
+        clicks(jToggleButton24, evt, 2, 7);
     }//GEN-LAST:event_jToggleButton24MousePressed
 
     private void jToggleButton25MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton25MousePressed
-        clicks(jToggleButton25, evt, 4, 4);
+        clicks(jToggleButton25, evt, 3, 0);
     }//GEN-LAST:event_jToggleButton25MousePressed
+        
+    private void jToggleButton26MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton26MousePressed
+        clicks(jToggleButton26, evt, 3, 1);
+    }//GEN-LAST:event_jToggleButton26MousePressed
+        
+    private void jToggleButton27MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton27MousePressed
+        clicks(jToggleButton27, evt, 3, 2);
+    }//GEN-LAST:event_jToggleButton27MousePressed
+        
+    private void jToggleButton28MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton28MousePressed
+        clicks(jToggleButton28, evt, 3, 3);
+    }//GEN-LAST:event_jToggleButton28MousePressed
+        
+    private void jToggleButton29MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton29MousePressed
+        clicks(jToggleButton29, evt, 3, 4);
+    }//GEN-LAST:event_jToggleButton29MousePressed
+
+    private void jToggleButton30MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton30MousePressed
+        clicks(jToggleButton30, evt, 3, 5);
+    }//GEN-LAST:event_jToggleButton30MousePressed
+
+    private void jToggleButton31MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton31MousePressed
+        clicks(jToggleButton31, evt, 3, 6);
+    }//GEN-LAST:event_jToggleButton31MousePressed
+
+    private void jToggleButton32MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton32MousePressed
+        clicks(jToggleButton32, evt, 3, 7);
+    }//GEN-LAST:event_jToggleButton32MousePressed
+
+    private void jToggleButton33MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton33MousePressed
+        clicks(jToggleButton33, evt, 4, 0);
+    }//GEN-LAST:event_jToggleButton33MousePressed
+
+    private void jToggleButton34MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton34MousePressed
+        clicks(jToggleButton34, evt, 4, 1);
+    }//GEN-LAST:event_jToggleButton34MousePressed
+
+    private void jToggleButton35MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton35MousePressed
+        clicks(jToggleButton35, evt, 4, 2);
+    }//GEN-LAST:event_jToggleButton35MousePressed
+
+    private void jToggleButton36MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton36MousePressed
+        clicks(jToggleButton36, evt, 4, 3);
+    }//GEN-LAST:event_jToggleButton36MousePressed
+
+    private void jToggleButton37MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton37MousePressed
+        clicks(jToggleButton37, evt, 4, 4);
+    }//GEN-LAST:event_jToggleButton37MousePressed
+
+    private void jToggleButton38MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton38MousePressed
+        clicks(jToggleButton38, evt, 4, 5);
+    }//GEN-LAST:event_jToggleButton38MousePressed
+
+    private void jToggleButton39MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton39MousePressed
+        clicks(jToggleButton39, evt, 4, 6);
+    }//GEN-LAST:event_jToggleButton39MousePressed
+
+    private void jToggleButton40MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton40MousePressed
+        clicks(jToggleButton40, evt, 4, 7);
+    }//GEN-LAST:event_jToggleButton40MousePressed
+
+    private void jToggleButton41MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton41MousePressed
+        clicks(jToggleButton41, evt, 5, 0);
+    }//GEN-LAST:event_jToggleButton41MousePressed
+
+    private void jToggleButton42MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton42MousePressed
+        clicks(jToggleButton42, evt, 5, 1);
+    }//GEN-LAST:event_jToggleButton42MousePressed
+
+    private void jToggleButton43MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton43MousePressed
+        clicks(jToggleButton43, evt, 5, 2);
+    }//GEN-LAST:event_jToggleButton43MousePressed
+
+    private void jToggleButton44MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton44MousePressed
+        clicks(jToggleButton44, evt, 5, 3);
+    }//GEN-LAST:event_jToggleButton44MousePressed
+
+    private void jToggleButton45MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton45MousePressed
+        clicks(jToggleButton45, evt, 5, 4);
+    }//GEN-LAST:event_jToggleButton45MousePressed
+
+    private void jToggleButton46MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton46MousePressed
+        clicks(jToggleButton46, evt, 5, 5);
+    }//GEN-LAST:event_jToggleButton46MousePressed
+
+    private void jToggleButton47MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton47MousePressed
+        clicks(jToggleButton47, evt, 5, 6);
+    }//GEN-LAST:event_jToggleButton47MousePressed
+
+    private void jToggleButton48MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton48MousePressed
+        clicks(jToggleButton48, evt, 5, 7);
+    }//GEN-LAST:event_jToggleButton48MousePressed
+
+    private void jToggleButton49MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton49MousePressed
+        clicks(jToggleButton49, evt, 6, 0);
+    }//GEN-LAST:event_jToggleButton49MousePressed
+
+    private void jToggleButton50MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton50MousePressed
+        clicks(jToggleButton50, evt, 6, 1);
+    }//GEN-LAST:event_jToggleButton50MousePressed
+
+    private void jToggleButton51MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton51MousePressed
+        clicks(jToggleButton51, evt, 6, 2);
+    }//GEN-LAST:event_jToggleButton51MousePressed
+
+    private void jToggleButton52MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton52MousePressed
+        clicks(jToggleButton52, evt, 6, 3);
+    }//GEN-LAST:event_jToggleButton52MousePressed
+
+    private void jToggleButton53MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton53MousePressed
+        clicks(jToggleButton53, evt, 6, 4);
+    }//GEN-LAST:event_jToggleButton53MousePressed
+
+    private void jToggleButton54MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton54MousePressed
+        clicks(jToggleButton54, evt, 6, 5);
+    }//GEN-LAST:event_jToggleButton54MousePressed
+
+    private void jToggleButton55MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton55MousePressed
+        clicks(jToggleButton55, evt, 6, 6);
+    }//GEN-LAST:event_jToggleButton55MousePressed
+
+    private void jToggleButton56MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton56MousePressed
+        clicks(jToggleButton56, evt, 6, 7);
+    }//GEN-LAST:event_jToggleButton56MousePressed
+
+    private void jToggleButton57MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton57MousePressed
+        clicks(jToggleButton57, evt, 7, 0);
+    }//GEN-LAST:event_jToggleButton57MousePressed
+
+    private void jToggleButton58MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton58MousePressed
+        clicks(jToggleButton58, evt, 7, 1);
+    }//GEN-LAST:event_jToggleButton58MousePressed
+
+    private void jToggleButton59MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton59MousePressed
+        clicks(jToggleButton59, evt, 7, 2);
+    }//GEN-LAST:event_jToggleButton59MousePressed
+
+    private void jToggleButton60MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton60MousePressed
+        clicks(jToggleButton60, evt, 7, 3);
+    }//GEN-LAST:event_jToggleButton60MousePressed
+
+    private void jToggleButton61MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton61MousePressed
+        clicks(jToggleButton61, evt, 7, 4);
+    }//GEN-LAST:event_jToggleButton61MousePressed
+
+    private void jToggleButton62MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton62MousePressed
+        clicks(jToggleButton62, evt, 7, 5);
+    }//GEN-LAST:event_jToggleButton62MousePressed
+
+    private void jToggleButton63MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton63MousePressed
+        clicks(jToggleButton63, evt, 7, 6);
+    }//GEN-LAST:event_jToggleButton63MousePressed
+
+    private void jToggleButton64MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton64MousePressed
+        clicks(jToggleButton64, evt, 7, 7);
+    }//GEN-LAST:event_jToggleButton64MousePressed
+
+    private void jToggleButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton16ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton16ActionPerformed
                                              
 
     /**
@@ -401,6 +894,7 @@ public class telaMatriz extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton jToggleButton10;
     private javax.swing.JToggleButton jToggleButton11;
@@ -419,10 +913,49 @@ public class telaMatriz extends javax.swing.JFrame {
     private javax.swing.JToggleButton jToggleButton23;
     private javax.swing.JToggleButton jToggleButton24;
     private javax.swing.JToggleButton jToggleButton25;
+    private javax.swing.JToggleButton jToggleButton26;
+    private javax.swing.JToggleButton jToggleButton27;
+    private javax.swing.JToggleButton jToggleButton28;
+    private javax.swing.JToggleButton jToggleButton29;
     private javax.swing.JToggleButton jToggleButton3;
+    private javax.swing.JToggleButton jToggleButton30;
+    private javax.swing.JToggleButton jToggleButton31;
+    private javax.swing.JToggleButton jToggleButton32;
+    private javax.swing.JToggleButton jToggleButton33;
+    private javax.swing.JToggleButton jToggleButton34;
+    private javax.swing.JToggleButton jToggleButton35;
+    private javax.swing.JToggleButton jToggleButton36;
+    private javax.swing.JToggleButton jToggleButton37;
+    private javax.swing.JToggleButton jToggleButton38;
+    private javax.swing.JToggleButton jToggleButton39;
     private javax.swing.JToggleButton jToggleButton4;
+    private javax.swing.JToggleButton jToggleButton40;
+    private javax.swing.JToggleButton jToggleButton41;
+    private javax.swing.JToggleButton jToggleButton42;
+    private javax.swing.JToggleButton jToggleButton43;
+    private javax.swing.JToggleButton jToggleButton44;
+    private javax.swing.JToggleButton jToggleButton45;
+    private javax.swing.JToggleButton jToggleButton46;
+    private javax.swing.JToggleButton jToggleButton47;
+    private javax.swing.JToggleButton jToggleButton48;
+    private javax.swing.JToggleButton jToggleButton49;
     private javax.swing.JToggleButton jToggleButton5;
+    private javax.swing.JToggleButton jToggleButton50;
+    private javax.swing.JToggleButton jToggleButton51;
+    private javax.swing.JToggleButton jToggleButton52;
+    private javax.swing.JToggleButton jToggleButton53;
+    private javax.swing.JToggleButton jToggleButton54;
+    private javax.swing.JToggleButton jToggleButton55;
+    private javax.swing.JToggleButton jToggleButton56;
+    private javax.swing.JToggleButton jToggleButton57;
+    private javax.swing.JToggleButton jToggleButton58;
+    private javax.swing.JToggleButton jToggleButton59;
     private javax.swing.JToggleButton jToggleButton6;
+    private javax.swing.JToggleButton jToggleButton60;
+    private javax.swing.JToggleButton jToggleButton61;
+    private javax.swing.JToggleButton jToggleButton62;
+    private javax.swing.JToggleButton jToggleButton63;
+    private javax.swing.JToggleButton jToggleButton64;
     private javax.swing.JToggleButton jToggleButton7;
     private javax.swing.JToggleButton jToggleButton8;
     private javax.swing.JToggleButton jToggleButton9;

@@ -263,9 +263,9 @@ public class telaMatriz extends javax.swing.JFrame {
         jPanel1.add(jToggleButton15);
 
         jToggleButton16.setToolTipText(null);
-        jToggleButton16.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton16ActionPerformed(evt);
+        jToggleButton16.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jToggleButton16MousePressed(evt);
             }
         });
         jPanel1.add(jToggleButton16);
@@ -888,9 +888,9 @@ public class telaMatriz extends javax.swing.JFrame {
         clicks(jToggleButton64, evt, 7, 7);
     }//GEN-LAST:event_jToggleButton64MousePressed
 
-    private void jToggleButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton16ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton16ActionPerformed
+    private void jToggleButton16MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton16MousePressed
+        clicks(jToggleButton16, evt, 1, 7);
+    }//GEN-LAST:event_jToggleButton16MousePressed
                                              
 
     /**

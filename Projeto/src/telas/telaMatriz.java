@@ -11,6 +11,7 @@ import projeto.*;
  */
 public class telaMatriz extends javax.swing.JFrame {
     private final Principal mae;
+    private int contador =0;
     /**
      * Creates new form telaMatriz
      */
@@ -47,6 +48,10 @@ public class telaMatriz extends javax.swing.JFrame {
                 botao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/flag.png")));
             }
             cell.invertBandeira();
+            contador++;
+            if(contador == matriz.getSIZE()*matriz.getSIZE() - matriz.getBombs()){
+                javax.swing.JOptionPane.showMessageDialog(rootPane, "Você ganhou :(", "Vitoria", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            }
         };
     }
     /**

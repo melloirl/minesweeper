@@ -174,14 +174,7 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.jButton1.setEnabled(false);
-        this.jLabel1.setEnabled(false);
-        this.jButton1.setVisible(false);
-        this.jLabel1.setVisible(false);
-        this.jButton2.setEnabled(false);
-        this.jButton2.setVisible(false);
-        this.jButton3.setEnabled(false);
-        this.jButton3.setVisible(false);
+        this.setVisible(false);
         new telaMatriz(this).setVisible(true);
         
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -237,14 +230,7 @@ public class Principal extends javax.swing.JFrame {
     }
     
     public void regeneraTela(){
-         this.jButton1.setEnabled(true);
-         this.jLabel1.setEnabled(true);
-         this.jButton1.setVisible(true);
-         this.jLabel1.setVisible(true);
-         this.jButton2.setEnabled(true);
-         this.jButton2.setVisible(true);
-         this.jButton3.setEnabled(true);
-         this.jButton3.setVisible(true);
+         this.setVisible(true);
     }
     
     /**

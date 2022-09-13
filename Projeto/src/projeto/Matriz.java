@@ -11,11 +11,23 @@ import java.util.Collections;
  * @author Wallace
  */
 public class Matriz {
-    
-    Celula[][] celulas = new Celula[5][5];
+    static final int SIZE = 8;
+    // 18.7SIZE% de 64 = 12 bombs
+    int bombs = ((SIZE*SIZE) * 4)/10;
+    Celula[][] celulas = new Celula[SIZE][SIZE];
     ArrayList<Boolean> bombSelector = new ArrayList<>();
-    // 40% de bombas
-    int bombs = ((5*5) * 4)/10;
+    
+    public static int getSIZE() {
+        return SIZE;
+    }
+
+    public int getBombs() {
+        return bombs;
+    }
+
+    public void setBombs(int bombs) {
+        this.bombs = bombs;
+    }
     
     public Celula[][] getCelulas(){
         return this.celulas;
@@ -25,10 +37,10 @@ public class Matriz {
         this.generateBombs();
         this.generateMatrix();
     }
-    
-    public void generateBombs(){
-        for(int i=0; i<5; i++){
-            for(int j=0; j<5; j++){
+
+    public final void generateBombs(){
+        for(int i=0; i<SIZE; i++){
+            for(int j=0; j<SIZE; j++){
                 bombSelector.add(false);
             }
         }
@@ -39,43 +51,42 @@ public class Matriz {
         
         Collections.shuffle(bombSelector);
     }
-    
-    public void generateMatrix(){
-        for(int k=0; k<25; k++){
-            int i = k/5;
-            int j = k % 5;
+
+    public final void generateMatrix(){
+        for(int k=0; k<SIZE*SIZE; k++){
+            int i = k/SIZE;
+            int j = k % SIZE;
             celulas[i][j] = new Numero(i, j, 0);
             
             if ( bombSelector.get(k) ){
                 celulas[i][j] = new Bomba(i, j); 
-                
-                // comment out
-                System.out.println(i + "    " + j);
             }
         }
         
-        for(int i=0; i<5; i++){
-            for(int j=0; j<5; j++){
+        for(int i=0; i<SIZE; i++){
+            System.out.print("| ");
+            for(int j=0; j<SIZE; j++){
                 if( ! celulas[i][j].getTipo().equals("Bomba") ){
                     int proximity = 0;
                     
-                    if (i>0 &&         celulas[i-1][j].getTipo().equals("Bomba") ) proximity += 1;
-                    if (i>0 && j>0  && celulas[i-1][j-1].getTipo().equals("Bomba") ) proximity += 1;
-                    if (i>0 && j<4 && celulas[i-1][j+1].getTipo().equals("Bomba") ) proximity += 1;
+                    if (i>0      &&             celulas[i-1][j  ].getTipo().equals("Bomba") ) proximity += 1;
+                    if (i>0      && j>0      && celulas[i-1][j-1].getTipo().equals("Bomba") ) proximity += 1;
+                    if (i>0      && j<SIZE-1 && celulas[i-1][j+1].getTipo().equals("Bomba") ) proximity += 1;
                     
-                    if (i<4 &&         celulas[i+1][j].getTipo().equals("Bomba") ) proximity += 1;
-                    if (i<4 && j>0  && celulas[i+1][j-1].getTipo().equals("Bomba") ) proximity += 1;
-                    if (i<4 && j<4 && celulas[i+1][j+1].getTipo().equals("Bomba") ) proximity += 1;
+                    if (i<SIZE-1 &&             celulas[i+1][j  ].getTipo().equals("Bomba") ) proximity += 1;
+                    if (i<SIZE-1 && j>0      && celulas[i+1][j-1].getTipo().equals("Bomba") ) proximity += 1;
+                    if (i<SIZE-1 && j<SIZE-1 && celulas[i+1][j+1].getTipo().equals("Bomba") ) proximity += 1;
                     
-                    if (j>0  && celulas[i][j-1].getTipo().equals("Bomba") ) proximity += 1;
-                    if (j<4 && celulas[i][j+1].getTipo().equals("Bomba") ) proximity += 1;
+                    if (j>0      &&             celulas[i  ][j-1].getTipo().equals("Bomba") ) proximity += 1;
+                    if (j<SIZE-1 &&             celulas[i  ][j+1].getTipo().equals("Bomba") ) proximity += 1;
                     
                     celulas[i][j] = new Numero(i, j, proximity);
                 }
                 
                 // comment out
-                System.out.println(i + "   " + j + "   " + celulas[i][j].getTipo());
+                System.out.printf("(%d,%d)=%7s |", i, j, celulas[i][j].getTipo());
             }
+            System.out.println();
         }
     }
 }

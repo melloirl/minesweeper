@@ -3,8 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package telas;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
 import projeto.*;
-
+import java.util.Timer;
+import java.util.TimerTask;
 /**
  *
  * @author Wallace
@@ -12,6 +19,7 @@ import projeto.*;
 public class telaMatriz extends javax.swing.JFrame {
     private final Principal mae;
     private int contador = 0;
+    private Temporizador cronometro = new Temporizador();
     Matriz matriz = new Matriz();
     
     /**
@@ -22,6 +30,16 @@ public class telaMatriz extends javax.swing.JFrame {
         this.mae = telaprincipal;
         matriz.generateBombs();
         associateButtons();
+        
+        Timer tm = new Timer();
+        tm.scheduleAtFixedRate(new TimerTask(){
+            @Override
+            public void run(){
+                cronometro.rodar();
+                jLabel1.setText(Integer.toString(cronometro.getContador()));
+            }
+            
+        },1000,1000);
     }
     
     public final void associateButtons(){
@@ -145,6 +163,35 @@ public class telaMatriz extends javax.swing.JFrame {
         if (j<SIZE-1             && celulas[i  ][j+1].getBotao().isEnabled() ) revealNumber(i  , j+1);
     }
     
+    private void ganhou(String user){
+        try{
+            File saveData = new File("ranking.txt");
+            Scanner reader = new Scanner(saveData);
+            System.out.println("Save carregado.");
+            
+        } catch (FileNotFoundException e) {
+            try{
+                File newSave = new File("ranking.txt");
+                if(newSave.createNewFile()){
+                    
+                    System.out.println("Save criado.");
+                }
+            } catch (IOException er){
+                System.out.println("Um erro ocorreu.");
+            }
+        }
+            
+        try{
+            try (FileWriter writer = new FileWriter("ranking.txt",true); BufferedWriter buffwriter = new BufferedWriter(writer)) {
+                buffwriter.write(user);
+                buffwriter.newLine();
+            }
+        } catch (IOException e){
+            System.out.println("Ocorreu um erro.");
+        }
+    
+    }
+    
     public void clicks(javax.swing.JToggleButton botao, java.awt.event.MouseEvent evt, int i, int j){
         Celula cell = matriz.getCelulas()[i][j];
         String tipo = cell.getTipo();
@@ -160,6 +207,14 @@ public class telaMatriz extends javax.swing.JFrame {
             }
             else{
                 revealNumber(i, j);
+                
+                contador++;
+                if(contador == (matriz.getSIZE()*matriz.getSIZE()) - matriz.getBombs()+1){
+                    javax.swing.JOptionPane.showMessageDialog(rootPane, "Você ganhou :)", "Vitoria", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                    this.setVisible(false);
+                    mae.regeneraTela();
+                    this.ganhou(mae.getUsuariologado().getLogin()+" "+Integer.toString(cronometro.getContador()));
+                }
             }
         }
         else if(evt.getButton() == 3 && botao.isEnabled()){
@@ -246,6 +301,10 @@ public class telaMatriz extends javax.swing.JFrame {
         jToggleButton62 = new javax.swing.JToggleButton();
         jToggleButton63 = new javax.swing.JToggleButton();
         jToggleButton64 = new javax.swing.JToggleButton();
+        jLabel1 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -733,6 +792,24 @@ public class telaMatriz extends javax.swing.JFrame {
         });
         jPanel1.add(jToggleButton64);
 
+        jMenu1.setText("Menu");
+        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu1MouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Novo Jogo");
+        jMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu2MouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -741,11 +818,17 @@ public class telaMatriz extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(30, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(105, 105, 105))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(130, Short.MAX_VALUE)
+                .addGap(45, 45, 45)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
@@ -1009,6 +1092,16 @@ public class telaMatriz extends javax.swing.JFrame {
     private void jToggleButton16MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton16MousePressed
         clicks(jToggleButton16, evt, 1, 7);
     }//GEN-LAST:event_jToggleButton16MousePressed
+
+    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
+        this.setVisible(false);
+        new Principal().setVisible(true);
+    }//GEN-LAST:event_jMenu1MouseClicked
+
+    private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
+        this.setVisible(false);
+        new telaMatriz(new Principal()).setVisible(true);
+    }//GEN-LAST:event_jMenu2MouseClicked
                                              
 
     /**
@@ -1017,6 +1110,10 @@ public class telaMatriz extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton jToggleButton10;

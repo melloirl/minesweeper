@@ -11,6 +11,10 @@ package projeto;
 public class Temporizador {
     private int contador;
     
+    public Temporizador(){
+        this.contador = 300;
+    }
+    
     public int getContador() {
         return contador;
     }
@@ -20,7 +24,7 @@ public class Temporizador {
     }
     
     
-    public void rodar(boolean atual){
+    public void rodar(){
         contador--;
     }
     

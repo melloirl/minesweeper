@@ -12,7 +12,8 @@ import javax.swing.JToggleButton;
  * @author Wallace
  */
 public class Matriz {
-    final int SIZE = 8;
+    private final int SIZE = 8;
+    
     // 18.7SIZE% de 64 = 12 bombs
     int bombs = ((SIZE*SIZE) * 19)/100;
     Celula[][] celulas = new Celula[SIZE][SIZE];

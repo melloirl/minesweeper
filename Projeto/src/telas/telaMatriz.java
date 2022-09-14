@@ -14,13 +14,14 @@ import java.util.Timer;
 import java.util.TimerTask;
 /**
  *
- * @author Wallace
+ * @author Wallace, Lucas
  */
 public class telaMatriz extends javax.swing.JFrame {
     private final Principal mae;
     private int contador = 0;
     private Temporizador cronometro = new Temporizador();
     Matriz matriz = new Matriz();
+    private int bombas = matriz.getBombs();
     
     /**
      * Creates new form telaMatriz
@@ -36,7 +37,8 @@ public class telaMatriz extends javax.swing.JFrame {
             @Override
             public void run(){
                 cronometro.rodar();
-                jLabel1.setText(Integer.toString(cronometro.getContador()));
+                jLabel2.setText(Integer.toString(cronometro.getContador()));
+                jLabel1.setText(Integer.toString(bombas));
             }
             
         },1000,1000);
@@ -207,12 +209,10 @@ public class telaMatriz extends javax.swing.JFrame {
             }
             else{
                 revealNumber(i, j);
-                
-                contador++;
                 if(contador == (matriz.getSIZE()*matriz.getSIZE()) - matriz.getBombs()+1){
                     javax.swing.JOptionPane.showMessageDialog(rootPane, "Você ganhou :)", "Vitoria", javax.swing.JOptionPane.INFORMATION_MESSAGE);
                     this.setVisible(false);
-                    mae.regeneraTela();
+                    new Ranking(new Principal()).setVisible(true);
                     this.ganhou(mae.getUsuariologado().getLogin()+" "+Integer.toString(cronometro.getContador()));
                 }
             }
@@ -220,9 +220,11 @@ public class telaMatriz extends javax.swing.JFrame {
         else if(evt.getButton() == 3 && botao.isEnabled()){
             if (cell.getBandeira()){
                 botao.setIcon(null);
+                bombas++;
             }
             else{
                 botao.setIcon(cell.mostrarBandeira());
+                bombas--;
             }
             cell.invertBandeira();
         }
@@ -302,6 +304,7 @@ public class telaMatriz extends javax.swing.JFrame {
         jToggleButton63 = new javax.swing.JToggleButton();
         jToggleButton64 = new javax.swing.JToggleButton();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -792,6 +795,12 @@ public class telaMatriz extends javax.swing.JFrame {
         });
         jPanel1.add(jToggleButton64);
 
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
+
         jMenu1.setText("Menu");
         jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -800,7 +809,7 @@ public class telaMatriz extends javax.swing.JFrame {
         });
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Novo Jogo");
+        jMenu2.setText("Ranking");
         jMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jMenu2MouseClicked(evt);
@@ -815,22 +824,33 @@ public class telaMatriz extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(62, 62, 62)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(30, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(105, 105, 105))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(461, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(95, 95, 95)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(45, 45, 45)
+                .addContainerGap(58, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(55, 55, 55)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(601, Short.MAX_VALUE)))
         );
 
         pack();
@@ -1100,8 +1120,12 @@ public class telaMatriz extends javax.swing.JFrame {
 
     private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
         this.setVisible(false);
-        new telaMatriz(new Principal()).setVisible(true);
+        new Ranking(new Principal()).setVisible(true);
     }//GEN-LAST:event_jMenu2MouseClicked
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+
+    }//GEN-LAST:event_jLabel1MouseClicked
                                              
 
     /**
@@ -1111,6 +1135,7 @@ public class telaMatriz extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;

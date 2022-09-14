@@ -19,9 +19,12 @@ import java.util.TimerTask;
 public class telaMatriz extends javax.swing.JFrame {
     private final Principal mae;
     private int contadorDeNumeros = 0;
-//    private Temporizador cronometroDecrescente = new Temporizador(60);
+    //private Temporizador cronometroDecrescente = new Temporizador(60);
     private Temporizador cronometroCrescente = new Temporizador();
     private final Matriz matriz = new Matriz();
+    private int contadorDeBandeiras = matriz.getBombas();
+    private final Celula[][] celulas = matriz.getCelulas();
+    private final int n = matriz.getTAMANHO();
     
     /**
      * Creates new form telaMatriz
@@ -30,6 +33,8 @@ public class telaMatriz extends javax.swing.JFrame {
         initComponents();
         this.mae = telaprincipal;
         matriz.gerarBombas();
+        jLabel1.setText(Integer.toString(contadorDeBandeiras));
+        
         associarBotoes();
         
         // Temporizador
@@ -45,7 +50,6 @@ public class telaMatriz extends javax.swing.JFrame {
     }
     
     public final void associarBotoes(){
-        int n = matriz.getTAMANHO();
         javax.swing.JToggleButton[][] botoes = new javax.swing.JToggleButton[n][n];
         javax.swing.JToggleButton[] linear = new javax.swing.JToggleButton[n*n+1];
         
@@ -132,7 +136,7 @@ public class telaMatriz extends javax.swing.JFrame {
     }
     
     public void RevelarNumero(int i, int j){
-        Celula celula = matriz.getCelulas()[i][j];
+        Celula celula = celulas[i][j];
         Numero numero = (Numero) celula;
         javax.swing.JToggleButton botao = celula.getBotao();
         
@@ -140,8 +144,15 @@ public class telaMatriz extends javax.swing.JFrame {
         botao.setEnabled(false);
         
         contadorDeNumeros++;
-        if(contadorDeNumeros == matriz.getTAMANHO()*matriz.getTAMANHO() - matriz.getBombas()){
-            javax.swing.JOptionPane.showMessageDialog(rootPane, "Você ganhou :)", "Vitoria", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+        if(contadorDeNumeros == n*n - matriz.getBombas()){
+            javax.swing.ImageIcon matrixEmote = new javax.swing.ImageIcon(getClass().getResource("/imagens/matrix.png"));
+            javax.swing.JOptionPane.showMessageDialog(
+                    rootPane, 
+                    "Você Ganhou, Parabéns!!",
+                    "Vitória",
+                    javax.swing.JOptionPane.INFORMATION_MESSAGE,
+                    matrixEmote);
+            
         }
         
         if ( numero.getTipo().equals("Numero0") ){
@@ -149,22 +160,72 @@ public class telaMatriz extends javax.swing.JFrame {
         }
     }
     
-    public void propagar(int i, int j){
-        int TAMANHO = matriz.getTAMANHO();
-        Celula[][] celulas = matriz.getCelulas();
-        
-        if (i>0                        && celulas[i-1][j  ].getBotao().isEnabled() ) RevelarNumero(i-1, j  );
-        if (i>0         && j>0         && celulas[i-1][j-1].getBotao().isEnabled() ) RevelarNumero(i-1, j-1);
-        if (i>0         && j<TAMANHO-1 && celulas[i-1][j+1].getBotao().isEnabled() ) RevelarNumero(i-1, j+1);
-
-        if (i<TAMANHO-1                && celulas[i+1][j  ].getBotao().isEnabled() ) RevelarNumero(i+1, j  );
-        if (i<TAMANHO-1 && j>0         && celulas[i+1][j-1].getBotao().isEnabled() ) RevelarNumero(i+1, j-1);
-        if (i<TAMANHO-1 && j<TAMANHO-1 && celulas[i+1][j+1].getBotao().isEnabled() ) RevelarNumero(i+1, j+1);
-
-        if (j>0                        && celulas[i  ][j-1].getBotao().isEnabled() ) RevelarNumero(i  , j-1);
-        if (j<TAMANHO-1                && celulas[i  ][j+1].getBotao().isEnabled() ) RevelarNumero(i  , j+1);
+    boolean checarPropagacao(int i, int j){
+        if (i>= 0 && i<n){
+            if (j>=0 && j<n){
+                if( celulas[i][j].getBotao().isEnabled() ){
+                    if (!celulas[i][j].getBandeira()){
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
     
+    public void propagar(int i, int j){
+        if (checarPropagacao(i-1, j  )) RevelarNumero(i-1, j  );
+        if (checarPropagacao(i-1, j-1)) RevelarNumero(i-1, j-1);
+        if (checarPropagacao(i-1, j+1)) RevelarNumero(i-1, j+1);
+
+        if (checarPropagacao(i+1, j  )) RevelarNumero(i+1, j  );
+        if (checarPropagacao(i+1, j-1)) RevelarNumero(i+1, j-1);
+        if (checarPropagacao(i+1, j+1)) RevelarNumero(i+1, j+1);
+
+        if (checarPropagacao(i  , j-1)) RevelarNumero(i  , j-1);
+        if (checarPropagacao(i  , j+1)) RevelarNumero(i  , j+1);
+    }
+    
+    public void clica(javax.swing.JToggleButton botao, java.awt.event.MouseEvent evt, int i, int j){
+        Celula celula = matriz.getCelulas()[i][j];
+        String tipo = celula.getTipo();
+        
+        if (evt.getButton() == 1){
+            if (tipo.equals("Bomba")){
+                Bomba bomba = (Bomba) celula;
+                botao.setIcon(bomba.mostrarImagem());
+                botao.setEnabled(false);
+                
+                javax.swing.ImageIcon beatShot = new javax.swing.ImageIcon(getClass().getResource("/imagens/beat_shot.png"));
+                
+                javax.swing.JOptionPane.showMessageDialog(
+                        rootPane, 
+                        "Você Perdeu, Tente Novamente!",
+                        "Derrota",
+                        javax.swing.JOptionPane.INFORMATION_MESSAGE,
+                        beatShot);
+                
+                this.setVisible(false);
+                mae.regeneraTela();
+            }
+            else{
+                RevelarNumero(i, j);
+            }
+        }
+        else if(evt.getButton() == 3 && botao.isEnabled()){
+            if (celula.getBandeira()){
+                botao.setIcon(null);
+                contadorDeBandeiras += 1;
+            }
+            else{
+                botao.setIcon(celula.mostrarBandeira());
+                contadorDeBandeiras -= 1;
+            }
+            celula.inverterBandeira();
+            jLabel1.setText(Integer.toString(contadorDeBandeiras));
+        }
+    }
+
     private void ganhou(String user){
         try{
             File saveData = new File("ranking.txt");
@@ -182,7 +243,7 @@ public class telaMatriz extends javax.swing.JFrame {
                 System.out.println("Um erro ocorreu.");
             }
         }
-            
+
         try{
             try (FileWriter writer = new FileWriter("ranking.txt",true); BufferedWriter buffwriter = new BufferedWriter(writer)) {
                 buffwriter.write(user);
@@ -190,35 +251,6 @@ public class telaMatriz extends javax.swing.JFrame {
             }
         } catch (IOException e){
             System.out.println("Ocorreu um erro.");
-        }
-    
-    }
-    
-    public void clica(javax.swing.JToggleButton botao, java.awt.event.MouseEvent evt, int i, int j){
-        Celula celula = matriz.getCelulas()[i][j];
-        String tipo = celula.getTipo();
-        
-        if (evt.getButton() == 1){
-            if (tipo.equals("Bomba")){
-                Bomba bomba = (Bomba) celula;
-                botao.setIcon(bomba.mostrarImagem());
-                javax.swing.JOptionPane.showMessageDialog(rootPane, "Você perdeu :(", "Derrota", javax.swing.JOptionPane.ERROR_MESSAGE);
-                this.setVisible(false);
-                mae.regeneraTela();
-                botao.setEnabled(false);
-            }
-            else{
-                RevelarNumero(i, j);
-            }
-        }
-        else if(evt.getButton() == 3 && botao.isEnabled()){
-            if (celula.getBandeira()){
-                botao.setIcon(null);
-            }
-            else{
-                botao.setIcon(celula.mostrarBandeira());
-            }
-            celula.inverterBandeira();
         }
     }
     /**

@@ -11,16 +11,139 @@ import projeto.*;
  */
 public class telaMatriz extends javax.swing.JFrame {
     private final Principal mae;
-    private int contador =0;
+    private int contador = 0;
+    Matriz matriz = new Matriz();
+    
     /**
      * Creates new form telaMatriz
      */
     public telaMatriz(Principal telaprincipal) {
         initComponents();
         this.mae = telaprincipal;
+        matriz.generateBombs();
+        associateButtons();
     }
     
-    Matriz matriz = new Matriz();
+    public final void associateButtons(){
+        int n = matriz.getSIZE();
+        javax.swing.JToggleButton[][] botoes = new javax.swing.JToggleButton[n][n];
+        javax.swing.JToggleButton[] linear = new javax.swing.JToggleButton[n*n+1];
+        
+        linear[1] = jToggleButton1;
+        linear[2] = jToggleButton2;
+        linear[3] = jToggleButton3;
+        linear[4] = jToggleButton4;
+        linear[5] = jToggleButton5;
+        linear[6] = jToggleButton6;
+        linear[7] = jToggleButton7;
+        linear[8] = jToggleButton8;
+        linear[9] = jToggleButton9;
+        
+        linear[10] = jToggleButton10;
+        linear[11] = jToggleButton11;
+        linear[12] = jToggleButton12;
+        linear[13] = jToggleButton13;
+        linear[14] = jToggleButton14;
+        linear[15] = jToggleButton15;
+        linear[16] = jToggleButton16;
+        linear[17] = jToggleButton17;
+        linear[18] = jToggleButton18;
+        linear[19] = jToggleButton19;
+        
+        linear[20] = jToggleButton20;
+        linear[21] = jToggleButton21;
+        linear[22] = jToggleButton22;
+        linear[23] = jToggleButton23;
+        linear[24] = jToggleButton24;
+        linear[25] = jToggleButton25;
+        linear[26] = jToggleButton26;
+        linear[27] = jToggleButton27;
+        linear[28] = jToggleButton28;
+        linear[29] = jToggleButton29;
+        
+        linear[30] = jToggleButton30;
+        linear[31] = jToggleButton31;
+        linear[32] = jToggleButton32;
+        linear[33] = jToggleButton33;
+        linear[34] = jToggleButton34;
+        linear[35] = jToggleButton35;
+        linear[36] = jToggleButton36;
+        linear[37] = jToggleButton37;
+        linear[38] = jToggleButton38;
+        linear[39] = jToggleButton39;
+        
+        linear[40] = jToggleButton40;
+        linear[41] = jToggleButton41;
+        linear[42] = jToggleButton42;
+        linear[43] = jToggleButton43;
+        linear[44] = jToggleButton44;
+        linear[45] = jToggleButton45;
+        linear[46] = jToggleButton46;
+        linear[47] = jToggleButton47;
+        linear[48] = jToggleButton48;
+        linear[49] = jToggleButton49;
+        
+        linear[50] = jToggleButton50;
+        linear[51] = jToggleButton51;
+        linear[52] = jToggleButton52;
+        linear[53] = jToggleButton53;
+        linear[54] = jToggleButton54;
+        linear[55] = jToggleButton55;
+        linear[56] = jToggleButton56;
+        linear[57] = jToggleButton57;
+        linear[58] = jToggleButton58;
+        linear[59] = jToggleButton59;
+        
+        linear[60] = jToggleButton60;
+        linear[61] = jToggleButton61;
+        linear[62] = jToggleButton62;
+        linear[63] = jToggleButton63;
+        linear[64] = jToggleButton64;
+        
+        int k = 1;
+        for(int i=0; i<n; i++){
+            for(int j=0; j<n; j++){
+                botoes[i][j] = linear[k];
+                k += 1;
+            }
+        }
+        
+        matriz.generateMatrix(botoes);
+    }
+    
+    public void revealNumber(int i, int j){
+        Celula cell = matriz.getCelulas()[i][j];
+        Numero numero = (Numero) cell;
+        javax.swing.JToggleButton botao = cell.getBotao();
+        
+        botao.setIcon(numero.mostrarImagem());
+        botao.setEnabled(false);
+        
+        contador++;
+        if(contador == matriz.getSIZE()*matriz.getSIZE() - matriz.getBombs()){
+            javax.swing.JOptionPane.showMessageDialog(rootPane, "Você ganhou :)", "Vitoria", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+        }
+        
+        if ( numero.getTipo().equals("Numero0") ){
+            propagate(i, j);
+        }
+    }
+    
+    public void propagate(int i, int j){
+        int SIZE = matriz.getSIZE();
+        Celula[][] celulas = matriz.getCelulas();
+        
+        if (i>0                  && celulas[i-1][j  ].getBotao().isEnabled() ) revealNumber(i-1, j  );
+        if (i>0      && j>0      && celulas[i-1][j-1].getBotao().isEnabled() ) revealNumber(i-1, j-1);
+        if (i>0      && j<SIZE-1 && celulas[i-1][j+1].getBotao().isEnabled() ) revealNumber(i-1, j+1);
+
+        if (i<SIZE-1             && celulas[i+1][j  ].getBotao().isEnabled() ) revealNumber(i+1, j  );
+        if (i<SIZE-1 && j>0      && celulas[i+1][j-1].getBotao().isEnabled() ) revealNumber(i+1, j-1);
+        if (i<SIZE-1 && j<SIZE-1 && celulas[i+1][j+1].getBotao().isEnabled() ) revealNumber(i+1, j+1);
+
+        if (j>0                  && celulas[i  ][j-1].getBotao().isEnabled() ) revealNumber(i  , j-1);
+        if (j<SIZE-1             && celulas[i  ][j+1].getBotao().isEnabled() ) revealNumber(i  , j+1);
+    }
     
     public void clicks(javax.swing.JToggleButton botao, java.awt.event.MouseEvent evt, int i, int j){
         Celula cell = matriz.getCelulas()[i][j];
@@ -33,26 +156,21 @@ public class telaMatriz extends javax.swing.JFrame {
                 javax.swing.JOptionPane.showMessageDialog(rootPane, "Você perdeu :(", "Derrota", javax.swing.JOptionPane.ERROR_MESSAGE);
                 this.setVisible(false);
                 mae.regeneraTela();
+                botao.setEnabled(false);
             }
             else{
-                Numero numero = (Numero) cell;
-                botao.setIcon(numero.mostrarImagem());
+                revealNumber(i, j);
             }
-            botao.setEnabled(false);
         }
         else if(evt.getButton() == 3 && botao.isEnabled()){
             if (cell.getBandeira()){
                 botao.setIcon(null);
             }
             else{
-                botao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/flag.png")));
+                botao.setIcon(cell.mostrarBandeira());
             }
             cell.invertBandeira();
-            contador++;
-            if(contador == matriz.getSIZE()*matriz.getSIZE() - matriz.getBombs()){
-                javax.swing.JOptionPane.showMessageDialog(rootPane, "Você ganhou :(", "Vitoria", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-            }
-        };
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.

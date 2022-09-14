@@ -3,14 +3,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package projeto;
+import javax.swing.JToggleButton;
+import javax.swing.ImageIcon;
 
 /**
  *
  * @author Wallace
  */
 public abstract class Celula {
-    int posI, posJ;
-    boolean bandeira = false;
+    private int posI, posJ;
+    private boolean bandeira = false;
+    private JToggleButton botao;
     
     public Celula(int posI, int posJ){
         this.posI = posI;
@@ -33,5 +36,17 @@ public abstract class Celula {
     
     public int getPosJ(){
         return this.posJ;
+    }
+    
+    public void setBotao(JToggleButton botao) {
+        this.botao = botao;
+    }
+
+    public JToggleButton getBotao() {
+        return botao;
+    }
+    
+    public ImageIcon mostrarBandeira(){
+        return new ImageIcon(getClass().getResource("/Images/flag.png"));
     }
 }

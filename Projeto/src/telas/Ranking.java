@@ -140,7 +140,7 @@ public class Ranking extends javax.swing.JFrame {
 
     private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
         this.setVisible(false);
-        new telaMatriz(new Principal()).setVisible(true);
+        new telaMatriz(this.mae).setVisible(true);
     }//GEN-LAST:event_jMenu2MouseClicked
 
     private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked

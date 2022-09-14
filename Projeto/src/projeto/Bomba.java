@@ -10,11 +10,13 @@ import javax.swing.ImageIcon;
  * @author Wallace
  */
 public class Bomba extends Celula implements TipoCelula {
-
+    
+    // Constructor 
     public Bomba(int posX, int posY){
         super(posX, posY);
     }
     
+    // Methods
     @Override
     public String getTipo(){
         return "Bomba";

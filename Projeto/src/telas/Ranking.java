@@ -17,13 +17,14 @@ import projeto.Usuario;
  * @author lucas
  */
 public class Ranking extends javax.swing.JFrame {
-    
+    private Principal mae;
     
     /**
      * Creates new form Ranking
      */
     public Ranking(Principal telaprincipal) {
         initComponents();
+        this.mae = telaprincipal;
         try{
             File saveData = new File("save.txt");
             Scanner reader = new Scanner(saveData);
@@ -134,6 +135,7 @@ public class Ranking extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
@@ -143,7 +145,7 @@ public class Ranking extends javax.swing.JFrame {
 
     private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
         this.setVisible(false);
-        new Principal().setVisible(true);
+        this.mae.setVisible(true);
     }//GEN-LAST:event_jMenu1MouseClicked
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed

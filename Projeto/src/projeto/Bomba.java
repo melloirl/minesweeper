@@ -24,6 +24,6 @@ public class Bomba extends Celula implements TipoCelula {
     
     @Override
     public ImageIcon mostrarImagem(){
-        return new ImageIcon(getClass().getResource("/Images/bomb.png"));
+        return new ImageIcon(getClass().getResource("/imagens/bomb.png"));
     }
 }

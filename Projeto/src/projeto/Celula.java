@@ -49,7 +49,7 @@ public abstract class Celula {
     
     // Methods
     public ImageIcon mostrarBandeira(){
-        return new ImageIcon(getClass().getResource("/Images/flag.png"));
+        return new ImageIcon(getClass().getResource("/imagens/flag.png"));
     }
     
     public void inverterBandeira(){

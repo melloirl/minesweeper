@@ -18,8 +18,9 @@ import java.util.TimerTask;
  */
 public class telaMatriz extends javax.swing.JFrame {
     private final Principal mae;
-    private int contador = 0;
-    private Temporizador cronometro = new Temporizador();
+    private int contadorDeNumeros = 0;
+//    private Temporizador cronometroDecrescente = new Temporizador(60);
+    private Temporizador cronometroCrescente = new Temporizador();
     private final Matriz matriz = new Matriz();
     
     /**
@@ -31,12 +32,13 @@ public class telaMatriz extends javax.swing.JFrame {
         matriz.gerarBombas();
         associarBotoes();
         
+        // Temporizador
         Timer tm = new Timer();
         tm.scheduleAtFixedRate(new TimerTask(){
             @Override
             public void run(){
-                cronometro.rodar();
-                jLabel1.setText(Integer.toString(cronometro.getContador()));
+                cronometroCrescente.incrementar();
+                jLabel2.setText(Integer.toString(cronometroCrescente.getContador()));
             }
             
         },1000,1000);
@@ -137,8 +139,8 @@ public class telaMatriz extends javax.swing.JFrame {
         botao.setIcon(numero.mostrarImagem());
         botao.setEnabled(false);
         
-        contador++;
-        if(contador == matriz.getTAMANHO()*matriz.getTAMANHO() - matriz.getBombas()){
+        contadorDeNumeros++;
+        if(contadorDeNumeros == matriz.getTAMANHO()*matriz.getTAMANHO() - matriz.getBombas()){
             javax.swing.JOptionPane.showMessageDialog(rootPane, "Você ganhou :)", "Vitoria", javax.swing.JOptionPane.INFORMATION_MESSAGE);
         }
         
@@ -207,14 +209,6 @@ public class telaMatriz extends javax.swing.JFrame {
             }
             else{
                 RevelarNumero(i, j);
-                
-                contador++;
-                if(contador == (matriz.getTAMANHO()*matriz.getTAMANHO()) - matriz.getBombas()+1){
-                    javax.swing.JOptionPane.showMessageDialog(rootPane, "Você ganhou :)", "Vitoria", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-                    this.setVisible(false);
-                    mae.regeneraTela();
-                    this.ganhou(mae.getUsuariologado().getLogin()+" "+Integer.toString(cronometro.getContador()));
-                }
             }
         }
         else if(evt.getButton() == 3 && botao.isEnabled()){
@@ -301,10 +295,10 @@ public class telaMatriz extends javax.swing.JFrame {
         jToggleButton62 = new javax.swing.JToggleButton();
         jToggleButton63 = new javax.swing.JToggleButton();
         jToggleButton64 = new javax.swing.JToggleButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -792,43 +786,68 @@ public class telaMatriz extends javax.swing.JFrame {
         });
         jPanel1.add(jToggleButton64);
 
-        jMenu1.setText("Menu");
-        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu1MouseClicked(evt);
+        jButton2.setBackground(new java.awt.Color(242, 242, 242));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/refresh.png"))); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
             }
         });
-        jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Novo Jogo");
-        jMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu2MouseClicked(evt);
+        jButton3.setBackground(new java.awt.Color(242, 242, 242));
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botaoMenu.png"))); // NOI18N
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
             }
         });
-        jMenuBar1.add(jMenu2);
 
-        setJMenuBar(jMenuBar1);
+        jLabel1.setFont(new java.awt.Font("Segoe UI Black", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("0");
+        jLabel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(102, 106, 121), new java.awt.Color(153, 153, 153), null, null));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI Black", 1, 36)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 153, 0));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("0");
+        jLabel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(153, 153, 153), new java.awt.Color(102, 106, 121), null, null));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(68, 68, 68)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(59, 59, 59)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(30, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(105, 105, 105))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(42, 42, 42)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
@@ -1093,15 +1112,15 @@ public class telaMatriz extends javax.swing.JFrame {
         clica(jToggleButton16, evt, 1, 7);
     }//GEN-LAST:event_jToggleButton16MousePressed
 
-    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
-        this.setVisible(false);
-        new Principal().setVisible(true);
-    }//GEN-LAST:event_jMenu1MouseClicked
-
-    private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.setVisible(false);
         new telaMatriz(new Principal()).setVisible(true);
-    }//GEN-LAST:event_jMenu2MouseClicked
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        this.setVisible(false);
+        new Principal().setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
                                              
 
     /**
@@ -1110,10 +1129,10 @@ public class telaMatriz extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton jToggleButton10;

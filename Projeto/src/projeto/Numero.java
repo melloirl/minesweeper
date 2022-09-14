@@ -10,13 +10,25 @@ import javax.swing.ImageIcon;
  * @author Wallace
  */
 public class Numero extends Celula implements TipoCelula {
-    int algarismo;
+    private int algarismo;
     
+    // Constructor
     public Numero(int posI, int posJ, int algarismo){
         super(posI, posJ);
         this.algarismo = algarismo;
     }
-
+    
+    // Getters
+    public int getAlgarismo() {
+        return algarismo;
+    }
+    
+    // Setters
+    public void setAlgarismo(int algarismo) {
+        this.algarismo = algarismo;
+    }
+    
+    // Methods
     @Override
     public String getTipo(){
         return "Numero" + String.valueOf(algarismo);

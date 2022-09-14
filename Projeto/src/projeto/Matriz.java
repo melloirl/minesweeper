@@ -5,6 +5,7 @@
 package projeto;
 import java.util.ArrayList;
 import java.util.Collections;
+import javax.swing.JToggleButton;
 
 /**
  *
@@ -12,6 +13,7 @@ import java.util.Collections;
  */
 public class Matriz {
     private final int SIZE = 8;
+    
     // 18.7SIZE% de 64 = 12 bombs
     int bombs = ((SIZE*SIZE) * 19)/100;
     Celula[][] celulas = new Celula[SIZE][SIZE];
@@ -32,11 +34,6 @@ public class Matriz {
     public Celula[][] getCelulas(){
         return this.celulas;
     }
-    
-    public Matriz(){
-        this.generateBombs();
-        this.generateMatrix();
-    }
 
     public final void generateBombs(){
         for(int i=0; i<SIZE; i++){
@@ -52,7 +49,7 @@ public class Matriz {
         Collections.shuffle(bombSelector);
     }
 
-    public final void generateMatrix(){
+    public final void generateMatrix(JToggleButton[][] botoes){
         for(int k=0; k<SIZE*SIZE; k++){
             int i = k/SIZE;
             int j = k % SIZE;
@@ -63,6 +60,7 @@ public class Matriz {
             }
         }
         
+        System.out.println();
         for(int i=0; i<SIZE; i++){
             System.out.print("| ");
             for(int j=0; j<SIZE; j++){
@@ -82,8 +80,8 @@ public class Matriz {
                     
                     celulas[i][j] = new Numero(i, j, proximity);
                 }
+                celulas[i][j].setBotao( botoes[i][j] );
                 
-                // comment out
                 System.out.printf("(%d,%d)=%7s |", i, j, celulas[i][j].getTipo());
             }
             System.out.println();

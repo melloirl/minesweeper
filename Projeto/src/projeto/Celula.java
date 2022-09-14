@@ -11,25 +11,21 @@ import javax.swing.ImageIcon;
  * @author Wallace
  */
 public abstract class Celula {
-    private int posI, posJ;
+    private final int posI, posJ;
     private boolean bandeira = false;
     private JToggleButton botao;
     
+    // Constructor
     public Celula(int posI, int posJ){
         this.posI = posI;
         this.posJ = posJ;
     }
     
-    public abstract String getTipo(); 
-    
+    // Getters
     public boolean getBandeira(){
         return this.bandeira;
     }
-    
-    public void invertBandeira(){
-        this.bandeira = !this.bandeira;
-    }
-    
+
     public int getPosI(){
         return this.posI;
     }
@@ -38,15 +34,27 @@ public abstract class Celula {
         return this.posJ;
     }
     
-    public void setBotao(JToggleButton botao) {
-        this.botao = botao;
-    }
-
     public JToggleButton getBotao() {
         return botao;
     }
     
+    // Setters
+    public void setBandeira(boolean bandeira) {
+        this.bandeira = bandeira;
+    }
+    
+    public void setBotao(JToggleButton botao) {
+        this.botao = botao;
+    }
+    
+    // Methods
     public ImageIcon mostrarBandeira(){
         return new ImageIcon(getClass().getResource("/Images/flag.png"));
     }
+    
+    public void inverterBandeira(){
+        this.bandeira = !this.bandeira;
+    }
+    
+    public abstract String getTipo();
 }

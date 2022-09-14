@@ -20,7 +20,7 @@ public class telaMatriz extends javax.swing.JFrame {
     private final Principal mae;
     private int contador = 0;
     private Temporizador cronometro = new Temporizador();
-    Matriz matriz = new Matriz();
+    private final Matriz matriz = new Matriz();
     
     /**
      * Creates new form telaMatriz
@@ -28,8 +28,8 @@ public class telaMatriz extends javax.swing.JFrame {
     public telaMatriz(Principal telaprincipal) {
         initComponents();
         this.mae = telaprincipal;
-        matriz.generateBombs();
-        associateButtons();
+        matriz.gerarBombas();
+        associarBotoes();
         
         Timer tm = new Timer();
         tm.scheduleAtFixedRate(new TimerTask(){
@@ -42,8 +42,8 @@ public class telaMatriz extends javax.swing.JFrame {
         },1000,1000);
     }
     
-    public final void associateButtons(){
-        int n = matriz.getSIZE();
+    public final void associarBotoes(){
+        int n = matriz.getTAMANHO();
         javax.swing.JToggleButton[][] botoes = new javax.swing.JToggleButton[n][n];
         javax.swing.JToggleButton[] linear = new javax.swing.JToggleButton[n*n+1];
         
@@ -126,41 +126,41 @@ public class telaMatriz extends javax.swing.JFrame {
             }
         }
         
-        matriz.generateMatrix(botoes);
+        matriz.gerarMatriz(botoes);
     }
     
-    public void revealNumber(int i, int j){
-        Celula cell = matriz.getCelulas()[i][j];
-        Numero numero = (Numero) cell;
-        javax.swing.JToggleButton botao = cell.getBotao();
+    public void RevelarNumero(int i, int j){
+        Celula celula = matriz.getCelulas()[i][j];
+        Numero numero = (Numero) celula;
+        javax.swing.JToggleButton botao = celula.getBotao();
         
         botao.setIcon(numero.mostrarImagem());
         botao.setEnabled(false);
         
         contador++;
-        if(contador == matriz.getSIZE()*matriz.getSIZE() - matriz.getBombs()){
+        if(contador == matriz.getTAMANHO()*matriz.getTAMANHO() - matriz.getBombas()){
             javax.swing.JOptionPane.showMessageDialog(rootPane, "Você ganhou :)", "Vitoria", javax.swing.JOptionPane.INFORMATION_MESSAGE);
         }
         
         if ( numero.getTipo().equals("Numero0") ){
-            propagate(i, j);
+            propagar(i, j);
         }
     }
     
-    public void propagate(int i, int j){
-        int SIZE = matriz.getSIZE();
+    public void propagar(int i, int j){
+        int TAMANHO = matriz.getTAMANHO();
         Celula[][] celulas = matriz.getCelulas();
         
-        if (i>0                  && celulas[i-1][j  ].getBotao().isEnabled() ) revealNumber(i-1, j  );
-        if (i>0      && j>0      && celulas[i-1][j-1].getBotao().isEnabled() ) revealNumber(i-1, j-1);
-        if (i>0      && j<SIZE-1 && celulas[i-1][j+1].getBotao().isEnabled() ) revealNumber(i-1, j+1);
+        if (i>0                        && celulas[i-1][j  ].getBotao().isEnabled() ) RevelarNumero(i-1, j  );
+        if (i>0         && j>0         && celulas[i-1][j-1].getBotao().isEnabled() ) RevelarNumero(i-1, j-1);
+        if (i>0         && j<TAMANHO-1 && celulas[i-1][j+1].getBotao().isEnabled() ) RevelarNumero(i-1, j+1);
 
-        if (i<SIZE-1             && celulas[i+1][j  ].getBotao().isEnabled() ) revealNumber(i+1, j  );
-        if (i<SIZE-1 && j>0      && celulas[i+1][j-1].getBotao().isEnabled() ) revealNumber(i+1, j-1);
-        if (i<SIZE-1 && j<SIZE-1 && celulas[i+1][j+1].getBotao().isEnabled() ) revealNumber(i+1, j+1);
+        if (i<TAMANHO-1                && celulas[i+1][j  ].getBotao().isEnabled() ) RevelarNumero(i+1, j  );
+        if (i<TAMANHO-1 && j>0         && celulas[i+1][j-1].getBotao().isEnabled() ) RevelarNumero(i+1, j-1);
+        if (i<TAMANHO-1 && j<TAMANHO-1 && celulas[i+1][j+1].getBotao().isEnabled() ) RevelarNumero(i+1, j+1);
 
-        if (j>0                  && celulas[i  ][j-1].getBotao().isEnabled() ) revealNumber(i  , j-1);
-        if (j<SIZE-1             && celulas[i  ][j+1].getBotao().isEnabled() ) revealNumber(i  , j+1);
+        if (j>0                        && celulas[i  ][j-1].getBotao().isEnabled() ) RevelarNumero(i  , j-1);
+        if (j<TAMANHO-1                && celulas[i  ][j+1].getBotao().isEnabled() ) RevelarNumero(i  , j+1);
     }
     
     private void ganhou(String user){
@@ -192,13 +192,13 @@ public class telaMatriz extends javax.swing.JFrame {
     
     }
     
-    public void clicks(javax.swing.JToggleButton botao, java.awt.event.MouseEvent evt, int i, int j){
-        Celula cell = matriz.getCelulas()[i][j];
-        String tipo = cell.getTipo();
+    public void clica(javax.swing.JToggleButton botao, java.awt.event.MouseEvent evt, int i, int j){
+        Celula celula = matriz.getCelulas()[i][j];
+        String tipo = celula.getTipo();
         
         if (evt.getButton() == 1){
             if (tipo.equals("Bomba")){
-                Bomba bomba = (Bomba) cell;
+                Bomba bomba = (Bomba) celula;
                 botao.setIcon(bomba.mostrarImagem());
                 javax.swing.JOptionPane.showMessageDialog(rootPane, "Você perdeu :(", "Derrota", javax.swing.JOptionPane.ERROR_MESSAGE);
                 this.setVisible(false);
@@ -206,10 +206,10 @@ public class telaMatriz extends javax.swing.JFrame {
                 botao.setEnabled(false);
             }
             else{
-                revealNumber(i, j);
+                RevelarNumero(i, j);
                 
                 contador++;
-                if(contador == (matriz.getSIZE()*matriz.getSIZE()) - matriz.getBombs()+1){
+                if(contador == (matriz.getTAMANHO()*matriz.getTAMANHO()) - matriz.getBombas()+1){
                     javax.swing.JOptionPane.showMessageDialog(rootPane, "Você ganhou :)", "Vitoria", javax.swing.JOptionPane.INFORMATION_MESSAGE);
                     this.setVisible(false);
                     mae.regeneraTela();
@@ -218,13 +218,13 @@ public class telaMatriz extends javax.swing.JFrame {
             }
         }
         else if(evt.getButton() == 3 && botao.isEnabled()){
-            if (cell.getBandeira()){
+            if (celula.getBandeira()){
                 botao.setIcon(null);
             }
             else{
-                botao.setIcon(cell.mostrarBandeira());
+                botao.setIcon(celula.mostrarBandeira());
             }
-            cell.invertBandeira();
+            celula.inverterBandeira();
         }
     }
     /**
@@ -838,259 +838,259 @@ public class telaMatriz extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jToggleButton1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton1MousePressed
-        clicks(jToggleButton1, evt, 0, 0);
+        clica(jToggleButton1, evt, 0, 0);
     }//GEN-LAST:event_jToggleButton1MousePressed
 
     private void jToggleButton2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton2MousePressed
-        clicks(jToggleButton2, evt, 0, 1);
+        clica(jToggleButton2, evt, 0, 1);
     }//GEN-LAST:event_jToggleButton2MousePressed
 
     private void jToggleButton3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton3MousePressed
-        clicks(jToggleButton3, evt, 0, 2);
+        clica(jToggleButton3, evt, 0, 2);
     }//GEN-LAST:event_jToggleButton3MousePressed
 
     private void jToggleButton4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton4MousePressed
-        clicks(jToggleButton4, evt, 0, 3);
+        clica(jToggleButton4, evt, 0, 3);
     }//GEN-LAST:event_jToggleButton4MousePressed
 
     private void jToggleButton5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton5MousePressed
-        clicks(jToggleButton5, evt, 0, 4);
+        clica(jToggleButton5, evt, 0, 4);
     }//GEN-LAST:event_jToggleButton5MousePressed
 
     private void jToggleButton6MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton6MousePressed
-        clicks(jToggleButton6, evt, 0, 5);
+        clica(jToggleButton6, evt, 0, 5);
     }//GEN-LAST:event_jToggleButton6MousePressed
 
     private void jToggleButton7MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton7MousePressed
-        clicks(jToggleButton7, evt, 0, 6);
+        clica(jToggleButton7, evt, 0, 6);
     }//GEN-LAST:event_jToggleButton7MousePressed
 
     private void jToggleButton8MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton8MousePressed
-        clicks(jToggleButton8, evt, 0, 7);
+        clica(jToggleButton8, evt, 0, 7);
     }//GEN-LAST:event_jToggleButton8MousePressed
 
     private void jToggleButton9MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton9MousePressed
-        clicks(jToggleButton9, evt, 1, 0);
+        clica(jToggleButton9, evt, 1, 0);
     }//GEN-LAST:event_jToggleButton9MousePressed
 
     private void jToggleButton10MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton10MousePressed
-        clicks(jToggleButton10, evt, 1, 1);
+        clica(jToggleButton10, evt, 1, 1);
     }//GEN-LAST:event_jToggleButton10MousePressed
 
     private void jToggleButton11MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton11MousePressed
-        clicks(jToggleButton11, evt, 1, 2);
+        clica(jToggleButton11, evt, 1, 2);
     }//GEN-LAST:event_jToggleButton11MousePressed
 
     private void jToggleButton12MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton12MousePressed
-        clicks(jToggleButton12, evt, 1, 3);
+        clica(jToggleButton12, evt, 1, 3);
     }//GEN-LAST:event_jToggleButton12MousePressed
 
     private void jToggleButton13MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton13MousePressed
-        clicks(jToggleButton13, evt, 1, 4);
+        clica(jToggleButton13, evt, 1, 4);
     }//GEN-LAST:event_jToggleButton13MousePressed
 
     private void jToggleButton14MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton14MousePressed
-        clicks(jToggleButton14, evt, 1, 5);
+        clica(jToggleButton14, evt, 1, 5);
     }//GEN-LAST:event_jToggleButton14MousePressed
 
     private void jToggleButton15MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton15MousePressed
-        clicks(jToggleButton15, evt, 1, 6);
+        clica(jToggleButton15, evt, 1, 6);
     }//GEN-LAST:event_jToggleButton15MousePressed
 
     private void jToggleButton17MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton17MousePressed
-        clicks(jToggleButton17, evt, 2, 0);
+        clica(jToggleButton17, evt, 2, 0);
     }//GEN-LAST:event_jToggleButton17MousePressed
 
     private void jToggleButton18MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton18MousePressed
-        clicks(jToggleButton18, evt, 2, 1);
+        clica(jToggleButton18, evt, 2, 1);
     }//GEN-LAST:event_jToggleButton18MousePressed
 
     private void jToggleButton19MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton19MousePressed
-        clicks(jToggleButton19, evt, 2, 2);
+        clica(jToggleButton19, evt, 2, 2);
     }//GEN-LAST:event_jToggleButton19MousePressed
 
     private void jToggleButton20MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton20MousePressed
-        clicks(jToggleButton20, evt, 2, 3);
+        clica(jToggleButton20, evt, 2, 3);
     }//GEN-LAST:event_jToggleButton20MousePressed
 
     private void jToggleButton21MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton21MousePressed
-        clicks(jToggleButton21, evt, 2, 4);
+        clica(jToggleButton21, evt, 2, 4);
     }//GEN-LAST:event_jToggleButton21MousePressed
 
     private void jToggleButton22MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton22MousePressed
-        clicks(jToggleButton22, evt, 2, 5);
+        clica(jToggleButton22, evt, 2, 5);
     }//GEN-LAST:event_jToggleButton22MousePressed
 
     private void jToggleButton23MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton23MousePressed
-        clicks(jToggleButton23, evt, 2, 6);
+        clica(jToggleButton23, evt, 2, 6);
     }//GEN-LAST:event_jToggleButton23MousePressed
 
     private void jToggleButton24MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton24MousePressed
-        clicks(jToggleButton24, evt, 2, 7);
+        clica(jToggleButton24, evt, 2, 7);
     }//GEN-LAST:event_jToggleButton24MousePressed
 
     private void jToggleButton25MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton25MousePressed
-        clicks(jToggleButton25, evt, 3, 0);
+        clica(jToggleButton25, evt, 3, 0);
     }//GEN-LAST:event_jToggleButton25MousePressed
         
     private void jToggleButton26MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton26MousePressed
-        clicks(jToggleButton26, evt, 3, 1);
+        clica(jToggleButton26, evt, 3, 1);
     }//GEN-LAST:event_jToggleButton26MousePressed
         
     private void jToggleButton27MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton27MousePressed
-        clicks(jToggleButton27, evt, 3, 2);
+        clica(jToggleButton27, evt, 3, 2);
     }//GEN-LAST:event_jToggleButton27MousePressed
         
     private void jToggleButton28MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton28MousePressed
-        clicks(jToggleButton28, evt, 3, 3);
+        clica(jToggleButton28, evt, 3, 3);
     }//GEN-LAST:event_jToggleButton28MousePressed
         
     private void jToggleButton29MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton29MousePressed
-        clicks(jToggleButton29, evt, 3, 4);
+        clica(jToggleButton29, evt, 3, 4);
     }//GEN-LAST:event_jToggleButton29MousePressed
 
     private void jToggleButton30MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton30MousePressed
-        clicks(jToggleButton30, evt, 3, 5);
+        clica(jToggleButton30, evt, 3, 5);
     }//GEN-LAST:event_jToggleButton30MousePressed
 
     private void jToggleButton31MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton31MousePressed
-        clicks(jToggleButton31, evt, 3, 6);
+        clica(jToggleButton31, evt, 3, 6);
     }//GEN-LAST:event_jToggleButton31MousePressed
 
     private void jToggleButton32MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton32MousePressed
-        clicks(jToggleButton32, evt, 3, 7);
+        clica(jToggleButton32, evt, 3, 7);
     }//GEN-LAST:event_jToggleButton32MousePressed
 
     private void jToggleButton33MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton33MousePressed
-        clicks(jToggleButton33, evt, 4, 0);
+        clica(jToggleButton33, evt, 4, 0);
     }//GEN-LAST:event_jToggleButton33MousePressed
 
     private void jToggleButton34MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton34MousePressed
-        clicks(jToggleButton34, evt, 4, 1);
+        clica(jToggleButton34, evt, 4, 1);
     }//GEN-LAST:event_jToggleButton34MousePressed
 
     private void jToggleButton35MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton35MousePressed
-        clicks(jToggleButton35, evt, 4, 2);
+        clica(jToggleButton35, evt, 4, 2);
     }//GEN-LAST:event_jToggleButton35MousePressed
 
     private void jToggleButton36MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton36MousePressed
-        clicks(jToggleButton36, evt, 4, 3);
+        clica(jToggleButton36, evt, 4, 3);
     }//GEN-LAST:event_jToggleButton36MousePressed
 
     private void jToggleButton37MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton37MousePressed
-        clicks(jToggleButton37, evt, 4, 4);
+        clica(jToggleButton37, evt, 4, 4);
     }//GEN-LAST:event_jToggleButton37MousePressed
 
     private void jToggleButton38MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton38MousePressed
-        clicks(jToggleButton38, evt, 4, 5);
+        clica(jToggleButton38, evt, 4, 5);
     }//GEN-LAST:event_jToggleButton38MousePressed
 
     private void jToggleButton39MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton39MousePressed
-        clicks(jToggleButton39, evt, 4, 6);
+        clica(jToggleButton39, evt, 4, 6);
     }//GEN-LAST:event_jToggleButton39MousePressed
 
     private void jToggleButton40MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton40MousePressed
-        clicks(jToggleButton40, evt, 4, 7);
+        clica(jToggleButton40, evt, 4, 7);
     }//GEN-LAST:event_jToggleButton40MousePressed
 
     private void jToggleButton41MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton41MousePressed
-        clicks(jToggleButton41, evt, 5, 0);
+        clica(jToggleButton41, evt, 5, 0);
     }//GEN-LAST:event_jToggleButton41MousePressed
 
     private void jToggleButton42MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton42MousePressed
-        clicks(jToggleButton42, evt, 5, 1);
+        clica(jToggleButton42, evt, 5, 1);
     }//GEN-LAST:event_jToggleButton42MousePressed
 
     private void jToggleButton43MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton43MousePressed
-        clicks(jToggleButton43, evt, 5, 2);
+        clica(jToggleButton43, evt, 5, 2);
     }//GEN-LAST:event_jToggleButton43MousePressed
 
     private void jToggleButton44MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton44MousePressed
-        clicks(jToggleButton44, evt, 5, 3);
+        clica(jToggleButton44, evt, 5, 3);
     }//GEN-LAST:event_jToggleButton44MousePressed
 
     private void jToggleButton45MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton45MousePressed
-        clicks(jToggleButton45, evt, 5, 4);
+        clica(jToggleButton45, evt, 5, 4);
     }//GEN-LAST:event_jToggleButton45MousePressed
 
     private void jToggleButton46MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton46MousePressed
-        clicks(jToggleButton46, evt, 5, 5);
+        clica(jToggleButton46, evt, 5, 5);
     }//GEN-LAST:event_jToggleButton46MousePressed
 
     private void jToggleButton47MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton47MousePressed
-        clicks(jToggleButton47, evt, 5, 6);
+        clica(jToggleButton47, evt, 5, 6);
     }//GEN-LAST:event_jToggleButton47MousePressed
 
     private void jToggleButton48MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton48MousePressed
-        clicks(jToggleButton48, evt, 5, 7);
+        clica(jToggleButton48, evt, 5, 7);
     }//GEN-LAST:event_jToggleButton48MousePressed
 
     private void jToggleButton49MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton49MousePressed
-        clicks(jToggleButton49, evt, 6, 0);
+        clica(jToggleButton49, evt, 6, 0);
     }//GEN-LAST:event_jToggleButton49MousePressed
 
     private void jToggleButton50MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton50MousePressed
-        clicks(jToggleButton50, evt, 6, 1);
+        clica(jToggleButton50, evt, 6, 1);
     }//GEN-LAST:event_jToggleButton50MousePressed
 
     private void jToggleButton51MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton51MousePressed
-        clicks(jToggleButton51, evt, 6, 2);
+        clica(jToggleButton51, evt, 6, 2);
     }//GEN-LAST:event_jToggleButton51MousePressed
 
     private void jToggleButton52MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton52MousePressed
-        clicks(jToggleButton52, evt, 6, 3);
+        clica(jToggleButton52, evt, 6, 3);
     }//GEN-LAST:event_jToggleButton52MousePressed
 
     private void jToggleButton53MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton53MousePressed
-        clicks(jToggleButton53, evt, 6, 4);
+        clica(jToggleButton53, evt, 6, 4);
     }//GEN-LAST:event_jToggleButton53MousePressed
 
     private void jToggleButton54MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton54MousePressed
-        clicks(jToggleButton54, evt, 6, 5);
+        clica(jToggleButton54, evt, 6, 5);
     }//GEN-LAST:event_jToggleButton54MousePressed
 
     private void jToggleButton55MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton55MousePressed
-        clicks(jToggleButton55, evt, 6, 6);
+        clica(jToggleButton55, evt, 6, 6);
     }//GEN-LAST:event_jToggleButton55MousePressed
 
     private void jToggleButton56MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton56MousePressed
-        clicks(jToggleButton56, evt, 6, 7);
+        clica(jToggleButton56, evt, 6, 7);
     }//GEN-LAST:event_jToggleButton56MousePressed
 
     private void jToggleButton57MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton57MousePressed
-        clicks(jToggleButton57, evt, 7, 0);
+        clica(jToggleButton57, evt, 7, 0);
     }//GEN-LAST:event_jToggleButton57MousePressed
 
     private void jToggleButton58MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton58MousePressed
-        clicks(jToggleButton58, evt, 7, 1);
+        clica(jToggleButton58, evt, 7, 1);
     }//GEN-LAST:event_jToggleButton58MousePressed
 
     private void jToggleButton59MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton59MousePressed
-        clicks(jToggleButton59, evt, 7, 2);
+        clica(jToggleButton59, evt, 7, 2);
     }//GEN-LAST:event_jToggleButton59MousePressed
 
     private void jToggleButton60MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton60MousePressed
-        clicks(jToggleButton60, evt, 7, 3);
+        clica(jToggleButton60, evt, 7, 3);
     }//GEN-LAST:event_jToggleButton60MousePressed
 
     private void jToggleButton61MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton61MousePressed
-        clicks(jToggleButton61, evt, 7, 4);
+        clica(jToggleButton61, evt, 7, 4);
     }//GEN-LAST:event_jToggleButton61MousePressed
 
     private void jToggleButton62MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton62MousePressed
-        clicks(jToggleButton62, evt, 7, 5);
+        clica(jToggleButton62, evt, 7, 5);
     }//GEN-LAST:event_jToggleButton62MousePressed
 
     private void jToggleButton63MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton63MousePressed
-        clicks(jToggleButton63, evt, 7, 6);
+        clica(jToggleButton63, evt, 7, 6);
     }//GEN-LAST:event_jToggleButton63MousePressed
 
     private void jToggleButton64MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton64MousePressed
-        clicks(jToggleButton64, evt, 7, 7);
+        clica(jToggleButton64, evt, 7, 7);
     }//GEN-LAST:event_jToggleButton64MousePressed
 
     private void jToggleButton16MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton16MousePressed
-        clicks(jToggleButton16, evt, 1, 7);
+        clica(jToggleButton16, evt, 1, 7);
     }//GEN-LAST:event_jToggleButton16MousePressed
 
     private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked

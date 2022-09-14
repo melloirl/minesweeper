@@ -19,7 +19,7 @@ import java.util.TimerTask;
 public class telaMatriz extends javax.swing.JFrame {
     private final Principal mae;
     private int contadorDeNumeros = 0;
-//    private Temporizador cronometroDecrescente = new Temporizador(60);
+    //private Temporizador cronometroDecrescente = new Temporizador(60);
     private Temporizador cronometroCrescente = new Temporizador();
     private final Matriz matriz = new Matriz();
     private int contadorDeBandeiras = matriz.getBombas();
@@ -146,13 +146,13 @@ public class telaMatriz extends javax.swing.JFrame {
         contadorDeNumeros++;
         if(contadorDeNumeros == n*n - matriz.getBombas()){
             javax.swing.ImageIcon matrixEmote = new javax.swing.ImageIcon(getClass().getResource("/imagens/matrix.png"));
-                
-                javax.swing.JOptionPane.showMessageDialog(
-                        rootPane, 
-                        "Você Ganhou, Parabéns!!",
-                        "Vitória",
-                        javax.swing.JOptionPane.INFORMATION_MESSAGE,
-                        matrixEmote);
+            javax.swing.JOptionPane.showMessageDialog(
+                    rootPane, 
+                    "Você Ganhou, Parabéns!!",
+                    "Vitória",
+                    javax.swing.JOptionPane.INFORMATION_MESSAGE,
+                    matrixEmote);
+            
         }
         
         if ( numero.getTipo().equals("Numero0") ){
@@ -225,7 +225,7 @@ public class telaMatriz extends javax.swing.JFrame {
             jLabel1.setText(Integer.toString(contadorDeBandeiras));
         }
     }
-    
+
     private void ganhou(String user){
         try{
             File saveData = new File("ranking.txt");
@@ -243,7 +243,7 @@ public class telaMatriz extends javax.swing.JFrame {
                 System.out.println("Um erro ocorreu.");
             }
         }
-            
+
         try{
             try (FileWriter writer = new FileWriter("ranking.txt",true); BufferedWriter buffwriter = new BufferedWriter(writer)) {
                 buffwriter.write(user);

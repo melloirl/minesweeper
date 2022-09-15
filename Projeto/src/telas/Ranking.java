@@ -3,12 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package telas;
-
+import javax.swing.table.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.*;
-import projeto.Usuario;
+import projeto.Par;
 
 
 
@@ -17,27 +17,41 @@ import projeto.Usuario;
  * @author lucas
  */
 public class Ranking extends javax.swing.JFrame {
+
+    private ArrayList<Par> lista = new ArrayList<>();
     private Principal mae;
     
     /**
      * Creates new form Ranking
      */
+    
+    Comparator<Par> comparador = new Comparator<>() {
+    public int compare(Par s1, Par s2) {
+        return Integer.compare(s1.getNumero(), s2.getNumero());
+    }
+};
+    
     public Ranking(Principal telaprincipal) {
         initComponents();
         this.mae = telaprincipal;
         try{
-            File saveData = new File("save.txt");
+            File saveData = new File("ranking.txt");
             Scanner reader = new Scanner(saveData);
             System.out.println("Save carregado.");
             while(reader.hasNextLine()){
                 String usuarioAtual = reader.nextLine();
                 String[] dados = usuarioAtual.split("\\s+");
-                
+                Par atual = new Par(Integer.parseInt(dados[1]),dados[0]);
+                lista.add(atual);
             }
-            
+            Collections.sort(lista, comparador);
+            for(int i =1;i<=lista.size();i++){
+                DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+                modelo.addRow(new Object[]{i, lista.get(i-1).getNome(), lista.get(i-1).getNumero()});
+            }
         } catch (FileNotFoundException e) {
             try{
-                File newSave = new File("save.txt");
+                File newSave = new File("ranking.txt");
                 if(newSave.createNewFile()){
                     
                     System.out.println("Save criado.");
@@ -47,7 +61,6 @@ public class Ranking extends javax.swing.JFrame {
             }
         }
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -66,16 +79,33 @@ public class Ranking extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
-                "Nome", "Pontuação"
+                "Nome", "Pontuação", "Colocação"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setResizable(false);
+            jTable1.getColumnModel().getColumn(1).setResizable(false);
+            jTable1.getColumnModel().getColumn(2).setResizable(false);
+        }
 
         jTextField1.setText("Nome");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -85,6 +115,11 @@ public class Ranking extends javax.swing.JFrame {
         });
 
         jButton1.setText("Pesquisar");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -131,6 +166,13 @@ public class Ranking extends javax.swing.JFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        while(modelo.getRowCount() > 0){
+            modelo.removeRow(modelo.getRowCount()-1);
+        }
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments

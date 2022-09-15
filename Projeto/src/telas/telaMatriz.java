@@ -26,6 +26,7 @@ public class telaMatriz extends javax.swing.JFrame {
     private final Celula[][] celulas = matriz.getCelulas();
     private final int n = matriz.getTAMANHO();
     private int pontuacao = 0;
+    private final Timer tm = new Timer();
     
     /**
      * Creates new form telaMatriz
@@ -39,7 +40,6 @@ public class telaMatriz extends javax.swing.JFrame {
         associarBotoes();
         
         // Temporizador
-        Timer tm = new Timer();
         tm.scheduleAtFixedRate(new TimerTask(){
             @Override
             public void run(){
@@ -171,6 +171,7 @@ public class telaMatriz extends javax.swing.JFrame {
                 mae.regeneraTela();
             }
             else{
+                tm.cancel();
                 sucumbir();
                 ganhar(mae.getUsuarioLogado());
                 new Ranking(mae).setVisible(true);

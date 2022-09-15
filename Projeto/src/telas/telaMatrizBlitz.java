@@ -26,6 +26,7 @@ public class telaMatrizBlitz extends javax.swing.JFrame {
     private final Celula[][] celulas = matriz.getCelulas();
     private final int n = matriz.getTAMANHO();
     private int pontuacao = 0;
+    private final Timer tm = new Timer();
     
     /**
      * Creates new form telaMatriz
@@ -40,7 +41,6 @@ public class telaMatrizBlitz extends javax.swing.JFrame {
         associarBotoes();
         
         // Temporizador
-        Timer tm = new Timer();
         tm.scheduleAtFixedRate(new TimerTask(){
             @Override
             public void run(){
@@ -52,6 +52,7 @@ public class telaMatrizBlitz extends javax.swing.JFrame {
                 jLabel2.setText(Integer.toString(cronometroDecrescente.getContador()));
                 
                 if (cronometroDecrescente.getContador() == 0){
+                    tm.cancel();
                     javax.swing.ImageIcon beatShot = new javax.swing.ImageIcon(getClass().getResource("/imagens/beat_shot.png"));
                 
                     javax.swing.JOptionPane.showMessageDialog(
@@ -189,6 +190,7 @@ public class telaMatrizBlitz extends javax.swing.JFrame {
                 mae.regeneraTela();
             }
             else{
+                tm.cancel();
                 sucumbir();
                 ganhar(mae.getUsuarioLogado());
                 new Ranking(mae).setVisible(true);

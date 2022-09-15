@@ -25,6 +25,7 @@ public class telaMatriz extends javax.swing.JFrame {
     private int contadorDeBandeiras = matriz.getBombas();
     private final Celula[][] celulas = matriz.getCelulas();
     private final int n = matriz.getTAMANHO();
+    private int pontuacao = 0;
     
     /**
      * Creates new form telaMatriz
@@ -42,7 +43,7 @@ public class telaMatriz extends javax.swing.JFrame {
         tm.scheduleAtFixedRate(new TimerTask(){
             @Override
             public void run(){
-
+                pontuacao = cronometroCrescente.getContador();
                 cronometroCrescente.incrementar();
                 jLabel2.setText(Integer.toString(cronometroCrescente.getContador()));
             }
@@ -171,7 +172,7 @@ public class telaMatriz extends javax.swing.JFrame {
             }
             else{
                 sucumbir();
-                ganhar(mae.getUsuariologado().toString());
+                ganhar(mae.getUsuariologado());
                 new Ranking(mae).setVisible(true);
             }
         }
@@ -247,7 +248,7 @@ public class telaMatriz extends javax.swing.JFrame {
         }
     }
 
-    private void ganhar(String user){
+    private void ganhar(Usuario user){
         try{
             File saveData = new File("ranking.txt");
             Scanner reader = new Scanner(saveData);
@@ -267,7 +268,9 @@ public class telaMatriz extends javax.swing.JFrame {
 
         try{
             try (FileWriter writer = new FileWriter("ranking.txt",true);BufferedWriter buffwriter = new BufferedWriter(writer)) {
-                buffwriter.write(user);
+                buffwriter.write(Integer.toString(pontuacao));
+                buffwriter.write(" ");
+                buffwriter.write(user.getNome());
                 buffwriter.write(" ");
                 buffwriter.write("Classico");
                 buffwriter.newLine();

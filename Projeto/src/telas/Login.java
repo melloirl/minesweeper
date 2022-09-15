@@ -95,7 +95,7 @@ public class Login extends javax.swing.JFrame {
         if(mae.getTela().getUsuarios().get(usuarioExtraido) != null){
             System.out.println(mae.getTela().getUsuarios().get(usuarioExtraido).getSenha());
             if(mae.getTela().getUsuarios().get(usuarioExtraido).getSenha().equals(senhaExtraida)){
-                mae.setUsuariologado(mae.getTela().getUsuarios().get(usuarioExtraido));
+                mae.setUsuarioLogado(mae.getTela().getUsuarios().get(usuarioExtraido));
                 mae.atualizaLogado(mae.getTela().getUsuarios().get(usuarioExtraido).getNome());
                 this.setVisible(false);
             }

@@ -8,7 +8,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.*;
-import projeto.Par;
+import projeto.Trio;
 
 
 
@@ -18,18 +18,18 @@ import projeto.Par;
  */
 public class Ranking extends javax.swing.JFrame {
 
-    private ArrayList<Par> lista = new ArrayList<>();
+    private ArrayList<Trio> lista = new ArrayList<>();
     private Principal mae;
     
     /**
      * Creates new form Ranking
      */
     
-    Comparator<Par> comparador = new Comparator<>() {
-    public int compare(Par s1, Par s2) {
+    Comparator<Trio> comparador = new Comparator<>() {
+    public int compare(Trio s1, Trio s2) {
         return Integer.compare(s1.getNumero(), s2.getNumero());
     }
-};
+    };
     
     public Ranking(Principal telaprincipal) {
         initComponents();
@@ -41,13 +41,13 @@ public class Ranking extends javax.swing.JFrame {
             while(reader.hasNextLine()){
                 String usuarioAtual = reader.nextLine();
                 String[] dados = usuarioAtual.split("\\s+");
-                Par atual = new Par(Integer.parseInt(dados[1]),dados[0]);
+                Trio atual = new Trio(Integer.parseInt(dados[1]),dados[0],dados[2]);
                 lista.add(atual);
             }
             Collections.sort(lista, comparador);
             for(int i =1;i<=lista.size();i++){
                 DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
-                modelo.addRow(new Object[]{i, lista.get(i-1).getNome(), lista.get(i-1).getNumero()});
+                modelo.addRow(new Object[]{i, lista.get(i-1).getNome(), lista.get(i-1).getNumero(),lista.get(i-1).getTipo()});
             }
         } catch (FileNotFoundException e) {
             try{
@@ -84,14 +84,14 @@ public class Ranking extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nome", "Pontuação", "Colocação"
+                "Colocação", "Nome", "Pontuação", "Tipo"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -102,11 +102,13 @@ public class Ranking extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(0).setResizable(false);
             jTable1.getColumnModel().getColumn(1).setResizable(false);
             jTable1.getColumnModel().getColumn(2).setResizable(false);
+            jTable1.getColumnModel().getColumn(3).setResizable(false);
         }
 
         jTextField1.setText("Nome");
@@ -207,7 +209,7 @@ public class Ranking extends javax.swing.JFrame {
         
         for(int i =1;i<=lista.size();i++){
             if(lista.get(i-1).getNome().equals(jTextField1.getText())){
-                modelo.addRow(new Object[]{i, lista.get(i-1).getNome(), lista.get(i-1).getNumero()});
+                modelo.addRow(new Object[]{i, lista.get(i-1).getNome(), lista.get(i-1).getNumero(),lista.get(i-1).getTipo()});
             }
         }
     }//GEN-LAST:event_jButton1MouseClicked

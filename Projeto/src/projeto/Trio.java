@@ -8,13 +8,19 @@ import java.lang.Comparable;
  *
  * @author lucas
  */
-public class Par{
+public class Trio{
     private final int numero;
     private final String nome;
+    private final String tipo;
     
-    public Par(int numero, String nome) {
+    public Trio(int numero, String nome, String tipo) {
         this.numero = numero;
         this.nome = nome;
+        this.tipo = tipo;
+    }
+    
+    public String getTipo(){
+        return tipo;
     }
 
     public int getNumero() {

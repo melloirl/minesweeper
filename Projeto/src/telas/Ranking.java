@@ -116,6 +116,11 @@ public class Ranking extends javax.swing.JFrame {
         });
 
         jButton1.setText("Pesquisar");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         jMenu1.setText("Menu");
         jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -173,11 +178,25 @@ public class Ranking extends javax.swing.JFrame {
     private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
         this.setVisible(false);
         new Principal().setVisible(true);
+        // O Wallace é dodoi;
     }//GEN-LAST:event_jMenu1MouseClicked
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        String procurado = jTextField1.getText();
+        for(int i =0; i< lista.size();i++){
+            if(lista.get(i).getNome().equals(procurado)){
+                javax.swing.JOptionPane.showMessageDialog(rootPane, procurado+ " " + Integer.toString(i+1), "Derrota", javax.swing.JOptionPane.ERROR_MESSAGE);
+                break;
+            }
+            if(i == lista.size()-1){
+                javax.swing.JOptionPane.showMessageDialog(rootPane, "Nome não encontrado", "Derrota", javax.swing.JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments

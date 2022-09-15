@@ -16,10 +16,10 @@ import java.util.TimerTask;
  *
  * @author Wallace
  */
-public class telaMatriz extends javax.swing.JFrame {
+public class telaMatrizBlitz extends javax.swing.JFrame {
     private final Principal mae;
     private int contadorDeNumeros = 0;
-    //private Temporizador cronometroDecrescente = new Temporizador(60);
+    private Temporizador cronometroDecrescente = new Temporizador(60);
     private Temporizador cronometroCrescente = new Temporizador();
     private final Matriz matriz = new Matriz();
     private int contadorDeBandeiras = matriz.getBombas();
@@ -31,11 +31,12 @@ public class telaMatriz extends javax.swing.JFrame {
     /**
      * Creates new form telaMatriz
      */
-    public telaMatriz(Principal telaprincipal) {
+    public telaMatrizBlitz(Principal telaprincipal) {
         initComponents();
         this.mae = telaprincipal;
         matriz.gerarBombas();
         jLabel1.setText(Integer.toString(contadorDeBandeiras));
+        jLabel2.setText(Integer.toString(60));
         
         associarBotoes();
         
@@ -43,9 +44,27 @@ public class telaMatriz extends javax.swing.JFrame {
         tm.scheduleAtFixedRate(new TimerTask(){
             @Override
             public void run(){
+                
                 pontuacao = cronometroCrescente.getContador();
                 cronometroCrescente.incrementar();
-                jLabel2.setText(Integer.toString(cronometroCrescente.getContador()));
+                cronometroDecrescente.decrementar();
+                
+                jLabel2.setText(Integer.toString(cronometroDecrescente.getContador()));
+                
+                if (cronometroDecrescente.getContador() == 0){
+                    tm.cancel();
+                    javax.swing.ImageIcon beatShot = new javax.swing.ImageIcon(getClass().getResource("/imagens/beat_shot.png"));
+                
+                    javax.swing.JOptionPane.showMessageDialog(
+                            rootPane, 
+                            "Você Perdeu, Tente Novamente!",
+                            "Derrota",
+                            javax.swing.JOptionPane.INFORMATION_MESSAGE,
+                            beatShot);
+
+                    sucumbir();
+                    mae.regeneraTela();
+                }
             }
             
         },1000,1000);
@@ -53,6 +72,7 @@ public class telaMatriz extends javax.swing.JFrame {
     
     public void sucumbir(){
         contadorDeNumeros = 0;
+        cronometroDecrescente.setContador(0);
         this.setVisible(false);
     }
     
@@ -157,7 +177,6 @@ public class telaMatriz extends javax.swing.JFrame {
         
         contadorDeNumeros++;
         
-        System.out.println(contadorDeNumeros);
         if(contadorDeNumeros == n*n - matriz.getBombas()){
             javax.swing.ImageIcon matrixEmote = new javax.swing.ImageIcon(getClass().getResource("/imagens/matrix.png"));
             javax.swing.JOptionPane.showMessageDialog(
@@ -268,12 +287,12 @@ public class telaMatriz extends javax.swing.JFrame {
         }
 
         try{
-            try (FileWriter writer = new FileWriter("ranking.txt",true);BufferedWriter buffwriter = new BufferedWriter(writer)) {
+            try (FileWriter writer = new FileWriter("ranking.txt",true); BufferedWriter buffwriter = new BufferedWriter(writer)) {
                 buffwriter.write(Integer.toString(pontuacao));
                 buffwriter.write(" ");
                 buffwriter.write(user.getNome());
                 buffwriter.write(" ");
-                buffwriter.write("Classico");
+                buffwriter.write("Blitz");
                 buffwriter.newLine();
             }
         } catch (IOException e){
@@ -358,6 +377,7 @@ public class telaMatriz extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -853,8 +873,7 @@ public class telaMatriz extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setBackground(null);
-        jButton3.setForeground(null);
+        jButton3.setBackground(new java.awt.Color(242, 242, 242));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/botaoMenu.png"))); // NOI18N
         jButton3.setBorder(null);
         jButton3.setBorderPainted(false);
@@ -877,6 +896,8 @@ public class telaMatriz extends javax.swing.JFrame {
         jLabel2.setText("0");
         jLabel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(153, 153, 153), new java.awt.Color(102, 106, 121), null, null));
 
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/blitz.png"))); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -891,9 +912,11 @@ public class telaMatriz extends javax.swing.JFrame {
                         .addGap(31, 31, 31)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(31, 31, 31)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel3))
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -904,9 +927,10 @@ public class telaMatriz extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
+                        .addGap(40, 40, 40)
                         .addComponent(jButton3)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1176,12 +1200,11 @@ public class telaMatriz extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         sucumbir();
-        new telaMatriz(this.mae).setVisible(true);
+        new telaMatrizBlitz(this.mae).setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         sucumbir();
-        this.setVisible(false);
         this.mae.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -1197,6 +1220,7 @@ public class telaMatriz extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton jToggleButton10;

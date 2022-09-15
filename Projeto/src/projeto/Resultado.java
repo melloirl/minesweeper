@@ -11,7 +11,7 @@ package projeto;
 public class Resultado {
     String data;
     int pontuacao;
-    Usuario usuario = new Usuario();
+    Usuario usuario;
 
     public String getData() {
         return data;
@@ -34,6 +34,12 @@ public class Resultado {
     }
 
     public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public Resultado(String data, int pontuacao, Usuario usuario) {
+        this.data = data;
+        this.pontuacao = pontuacao;
         this.usuario = usuario;
     }
     

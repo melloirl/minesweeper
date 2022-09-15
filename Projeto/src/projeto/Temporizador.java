@@ -11,17 +11,31 @@ package projeto;
 public class Temporizador {
     private int contador;
     
+    // Constructors
+    public Temporizador(){
+        this.contador = 0;
+    }
+    public Temporizador(int time){
+        this.contador = time;
+    }
+    
+    // Getters
     public int getContador() {
         return contador;
     }
-
+    
+    // Setters
     public void setContador(int contador) {
         this.contador = contador;
     }
     
+    // Methods
+    public void decrementar(){
+        this.contador--;
+    }
     
-    public void rodar(boolean atual){
-        contador--;
+    public void incrementar(){
+        this.contador++;
     }
     
 }

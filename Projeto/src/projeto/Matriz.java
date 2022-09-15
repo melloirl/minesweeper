@@ -5,77 +5,96 @@
 package projeto;
 import java.util.ArrayList;
 import java.util.Collections;
+import javax.swing.JToggleButton;
 
 /**
  *
  * @author Wallace
  */
 public class Matriz {
+    private final int TAMANHO = 8;
+    // 18.75 % de 64 = 12 bombas:
+    private final int bombas = ((TAMANHO*TAMANHO) * 19)/100;
+    Celula[][] celulas = new Celula[TAMANHO][TAMANHO];
+    ArrayList<Boolean> seletorDeBombas = new ArrayList<>();
     
-    Celula[][] celulas = new Celula[5][5];
-    ArrayList<Boolean> bombSelector = new ArrayList<>();
-    // 40% de bombas
-    int bombs = ((5*5) * 4)/10;
-    
-    public Celula[][] getCelulas(){
-        return this.celulas;
+    // Getters
+    public int getTAMANHO(){    
+        return TAMANHO;
+    }
+
+    public int getBombas() {
+        return bombas;
+    }
+
+    public Celula[][] getCelulas() {
+        return celulas;
+    }
+
+    public ArrayList<Boolean> getSeletorDeBombas() {    
+        return seletorDeBombas;
+    }
+
+    // Setters
+    public void setCelulas(Celula[][] celulas) {
+        this.celulas = celulas;
+    }
+
+    public void setSeletorDeBombas(ArrayList<Boolean> seletorDeBombas) {
+        this.seletorDeBombas = seletorDeBombas;
     }
     
-    public Matriz(){
-        this.generateBombs();
-        this.generateMatrix();
-    }
-    
-    public void generateBombs(){
-        for(int i=0; i<5; i++){
-            for(int j=0; j<5; j++){
-                bombSelector.add(false);
+    // Methods
+    public final void gerarBombas() {
+        for(int i=0; i<TAMANHO; i++){
+            for(int j=0; j<TAMANHO; j++){
+                seletorDeBombas.add(false);
             }
         }
         
-        for(int i=0; i<bombs; i++){
-            bombSelector.set(i, true);
+        for(int i=0; i<bombas; i++){
+            seletorDeBombas.set(i, true);
         }
         
-        Collections.shuffle(bombSelector);
+        Collections.shuffle(seletorDeBombas);
     }
-    
-    public void generateMatrix(){
-        for(int k=0; k<25; k++){
-            int i = k/5;
-            int j = k % 5;
+
+    public final void gerarMatriz(JToggleButton[][] botoes){
+        for(int k=0; k<TAMANHO*TAMANHO; k++){
+            int i = k/TAMANHO;
+            int j = k % TAMANHO;
             celulas[i][j] = new Numero(i, j, 0);
             
-            if ( bombSelector.get(k) ){
+            if ( seletorDeBombas.get(k) ){
                 celulas[i][j] = new Bomba(i, j); 
-                
-                // comment out
-                System.out.println(i + "    " + j);
             }
         }
         
-        for(int i=0; i<5; i++){
-            for(int j=0; j<5; j++){
+        System.out.println();
+        for(int i=0; i<TAMANHO; i++){
+            System.out.print("| ");
+            for(int j=0; j<TAMANHO; j++){
                 if( ! celulas[i][j].getTipo().equals("Bomba") ){
-                    int proximity = 0;
+                    int adjacentes = 0;
                     
-                    if (i>0 &&         celulas[i-1][j].getTipo().equals("Bomba") ) proximity += 1;
-                    if (i>0 && j>0  && celulas[i-1][j-1].getTipo().equals("Bomba") ) proximity += 1;
-                    if (i>0 && j<4 && celulas[i-1][j+1].getTipo().equals("Bomba") ) proximity += 1;
+                    if (i>0      &&                   celulas[i-1][j  ].getTipo().equals("Bomba") ) adjacentes += 1;
+                    if (i>0      && j>0      &&       celulas[i-1][j-1].getTipo().equals("Bomba") ) adjacentes += 1;
+                    if (i>0      && j<TAMANHO-1 &&    celulas[i-1][j+1].getTipo().equals("Bomba") ) adjacentes += 1;
                     
-                    if (i<4 &&         celulas[i+1][j].getTipo().equals("Bomba") ) proximity += 1;
-                    if (i<4 && j>0  && celulas[i+1][j-1].getTipo().equals("Bomba") ) proximity += 1;
-                    if (i<4 && j<4 && celulas[i+1][j+1].getTipo().equals("Bomba") ) proximity += 1;
+                    if (i<TAMANHO-1 &&                celulas[i+1][j  ].getTipo().equals("Bomba") ) adjacentes += 1;
+                    if (i<TAMANHO-1 && j>0      &&    celulas[i+1][j-1].getTipo().equals("Bomba") ) adjacentes += 1;
+                    if (i<TAMANHO-1 && j<TAMANHO-1 && celulas[i+1][j+1].getTipo().equals("Bomba") ) adjacentes += 1;
                     
-                    if (j>0  && celulas[i][j-1].getTipo().equals("Bomba") ) proximity += 1;
-                    if (j<4 && celulas[i][j+1].getTipo().equals("Bomba") ) proximity += 1;
+                    if (j>0      &&             celulas[i  ][j-1].getTipo().equals("Bomba") ) adjacentes += 1;
+                    if (j<TAMANHO-1 &&             celulas[i  ][j+1].getTipo().equals("Bomba") ) adjacentes += 1;
                     
-                    celulas[i][j] = new Numero(i, j, proximity);
+                    celulas[i][j] = new Numero(i, j, adjacentes);
                 }
+                celulas[i][j].setBotao( botoes[i][j] );
                 
-                // comment out
-                System.out.println(i + "   " + j + "   " + celulas[i][j].getTipo());
+                System.out.printf("(%d,%d)=%7s |", i, j, celulas[i][j].getTipo());
             }
+            System.out.println();
         }
     }
 }

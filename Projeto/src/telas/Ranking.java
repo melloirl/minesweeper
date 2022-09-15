@@ -19,6 +19,8 @@ import projeto.Par;
 public class Ranking extends javax.swing.JFrame {
     
     private ArrayList<Par> lista = new ArrayList<>();
+    private Principal mae;
+    
     /**
      * Creates new form Ranking
      */
@@ -31,6 +33,7 @@ public class Ranking extends javax.swing.JFrame {
     
     public Ranking(Principal telaprincipal) {
         initComponents();
+        this.mae = telaprincipal;
         try{
             File saveData = new File("ranking.txt");
             Scanner reader = new Scanner(saveData);
@@ -168,17 +171,22 @@ public class Ranking extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
         this.setVisible(false);
-        new telaMatriz(new Principal()).setVisible(true);
+        new telaMatriz(this.mae).setVisible(true);
     }//GEN-LAST:event_jMenu2MouseClicked
 
     private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
         this.setVisible(false);
+<<<<<<< HEAD
         new Principal().setVisible(true);
         // O Wallace é dodoi;
+=======
+        this.mae.setVisible(true);
+>>>>>>> 78866d431ed03cfb10cdbd4613d7fd44987b204b
     }//GEN-LAST:event_jMenu1MouseClicked
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed

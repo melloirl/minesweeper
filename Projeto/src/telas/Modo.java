@@ -100,7 +100,6 @@ public class Modo extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         this.setVisible(false);
         new telaMatriz(mae).setVisible(true);
-
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MousePressed

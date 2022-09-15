@@ -45,10 +45,14 @@ public class telaMatriz extends javax.swing.JFrame {
 
                 cronometroCrescente.incrementar();
                 jLabel2.setText(Integer.toString(cronometroCrescente.getContador()));
-
             }
             
         },1000,1000);
+    }
+    
+    public void sucumbir(){
+        contadorDeNumeros = 0;
+        this.setVisible(false);
     }
     
     public final void associarBotoes(){
@@ -144,12 +148,14 @@ public class telaMatriz extends javax.swing.JFrame {
         
         botao.setIcon(numero.mostrarImagem());
         botao.setEnabled(false);
+        
         if (celula.getBandeira()){
             celula.setBandeira(false);
             contadorDeBandeiras += 1;
         }
         
         contadorDeNumeros++;
+        
         System.out.println(contadorDeNumeros);
         if(contadorDeNumeros == n*n - matriz.getBombas()){
             javax.swing.ImageIcon matrixEmote = new javax.swing.ImageIcon(getClass().getResource("/imagens/matrix.png"));
@@ -159,7 +165,9 @@ public class telaMatriz extends javax.swing.JFrame {
                     "Vitória",
                     javax.swing.JOptionPane.INFORMATION_MESSAGE,
                     matrixEmote);
-            
+            ganhar(mae.getUsuariologado().toString());
+            sucumbir();
+            new Ranking(mae).setVisible(true);
         }
         
         if ( numero.getTipo().equals("Numero0") ){
@@ -212,7 +220,7 @@ public class telaMatriz extends javax.swing.JFrame {
                         javax.swing.JOptionPane.INFORMATION_MESSAGE,
                         beatShot);
                 
-                this.setVisible(false);
+                sucumbir();
                 mae.regeneraTela();
             }
             else{
@@ -252,8 +260,10 @@ public class telaMatriz extends javax.swing.JFrame {
         }
 
         try{
-            try (FileWriter writer = new FileWriter("ranking.txt",true); BufferedWriter buffwriter = new BufferedWriter(writer)) {
+            try (FileWriter writer = new FileWriter("ranking.txt",true);BufferedWriter buffwriter = new BufferedWriter(writer)) {
                 buffwriter.write(user);
+                buffwriter.write(" ");
+                buffwriter.write("Classico");
                 buffwriter.newLine();
             }
         } catch (IOException e){
@@ -1155,11 +1165,12 @@ public class telaMatriz extends javax.swing.JFrame {
 
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.setVisible(false);
+        sucumbir();
         new telaMatriz(this.mae).setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        sucumbir();
         this.setVisible(false);
         this.mae.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed

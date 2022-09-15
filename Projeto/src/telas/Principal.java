@@ -24,6 +24,11 @@ public class Principal extends javax.swing.JFrame {
     public void setUsuariologado(Usuario usuariologado) {
         this.usuariologado = usuariologado;
     }
+    
+    public Usuario getUsuariologado() {
+        return this.usuariologado;
+    }
+    
     /**
      * Creates new form Principal
      */
@@ -50,10 +55,6 @@ public class Principal extends javax.swing.JFrame {
                 System.out.println("Um erro ocorreu.");
             }
         }
-    }
-
-    public Usuario getUsuariologado() {
-        return usuariologado;
     }
 
     /**

@@ -152,6 +152,7 @@ public class Ranking extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+
     private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
         this.setVisible(false);
         new telaMatriz(this.mae).setVisible(true);
@@ -163,6 +164,7 @@ public class Ranking extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenu1MouseClicked
 
 
+
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
@@ -171,6 +173,12 @@ public class Ranking extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
         while(modelo.getRowCount() > 0){
             modelo.removeRow(modelo.getRowCount()-1);
+        }
+        
+        for(int i =1;i<=lista.size();i++){
+            if(lista.get(i-1).getNome().equals(jTextField1.getText())){
+                modelo.addRow(new Object[]{i, lista.get(i-1).getNome(), lista.get(i-1).getNumero()});
+            }
         }
     }//GEN-LAST:event_jButton1MouseClicked
 

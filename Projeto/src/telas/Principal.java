@@ -40,11 +40,14 @@ public class Principal extends javax.swing.JFrame {
     public Usuario getUsuarioLogado() {
         return usuarioLogado;
     }
-
+    
     public void setUsuarioLogado(Usuario usuarioLogado) {
         this.usuarioLogado = usuarioLogado;
     }
-    
+
+    /**
+     * Creates new form Principal
+     */
     public Principal() {
         initComponents();
         try{
@@ -68,14 +71,6 @@ public class Principal extends javax.swing.JFrame {
                 System.out.println("Um erro ocorreu.");
             }
         }
-    }
-
-    public Usuario getUsuariologado() {
-        return usuarioLogado;
-    }
-    
-    public void setUsuariologado(Usuario usuariologado) {
-        this.usuarioLogado = usuariologado;
     }
     
     public void salvarDados(String user){
@@ -220,7 +215,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.setVisible(false);
-        new telaMatriz(this).setVisible(true);
+        new Modo(this).setVisible(true);
         
     }//GEN-LAST:event_jButton1ActionPerformed
 

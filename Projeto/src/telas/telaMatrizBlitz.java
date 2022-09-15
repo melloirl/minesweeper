@@ -181,9 +181,15 @@ public class telaMatrizBlitz extends javax.swing.JFrame {
                     "Vitória",
                     javax.swing.JOptionPane.INFORMATION_MESSAGE,
                     matrixEmote);
-            ganhar(mae.getUsuariologado().toString());
-            sucumbir();
-            new Ranking(mae).setVisible(true);
+            if(mae.getUsuariologado() == null){
+                sucumbir();
+                mae.regeneraTela();
+            }
+            else{
+                sucumbir();
+                ganhar(mae.getUsuariologado().toString());
+                new Ranking(mae).setVisible(true);
+            }
         }
         
         if ( numero.getTipo().equals("Numero0") ){

@@ -166,13 +166,13 @@ public class telaMatriz extends javax.swing.JFrame {
                     "Vitória",
                     javax.swing.JOptionPane.INFORMATION_MESSAGE,
                     matrixEmote);
-            if(mae.getUsuariologado() == null){
+            if(mae.getUsuarioLogado() == null){
                 sucumbir();
                 mae.regeneraTela();
             }
             else{
                 sucumbir();
-                ganhar(mae.getUsuariologado());
+                ganhar(mae.getUsuarioLogado());
                 new Ranking(mae).setVisible(true);
             }
         }
